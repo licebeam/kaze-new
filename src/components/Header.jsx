@@ -12,7 +12,10 @@ const HeaderBody = styled.div`
 const Header = ({}) => {
   return (
     <HeaderBody>
-      <div>I am a header</div>
+      <div>Kaze Logo</div>
+      <div>image</div>
+      <div>settings</div>
+      <div>UserName</div>
     </HeaderBody>
   )
 }
