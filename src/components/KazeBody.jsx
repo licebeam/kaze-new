@@ -16,7 +16,7 @@ const MainBody = styled.div`
   }
   .user-input { 
     flex: .4; 
-    background-color: green;
+    background-color: #fff;
   }
 `
 
@@ -26,7 +26,7 @@ const KazeBody = ({}) => {
       <div className='card-container'>
         <Card/>
       </div>
-      <div className='user-input'>User Input?</div>
+      <div className='user-input'>User Input? and perhaps a progress bar for the current card set?</div>
     </MainBody>
   )
 }
