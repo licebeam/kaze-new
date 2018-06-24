@@ -15,7 +15,7 @@ const MainBody = styled.div`
     display: flex;
   }
   .user-input { 
-    flex: 1; 
+    flex: .4; 
     background-color: green;
   }
 `
