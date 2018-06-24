@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-
+import Card from './Card';
 
 const MainBody = styled.div`
   width: 100%;
@@ -21,7 +21,9 @@ const MainBody = styled.div`
 const KazeBody = ({}) => {
   return (
     <MainBody>
-      <div className='card-container'>Card Container</div>
+      <div className='card-container'>
+        <Card/>
+      </div>
       <div className='user-input'>User Input?</div>
     </MainBody>
   )
