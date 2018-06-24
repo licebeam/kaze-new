@@ -7,23 +7,29 @@ const CardBody = styled.div`
   color: #fff;
   flex: 1;
   justify-content: center; 
+  align-items: center;
   display: flex; 
   flex-direction: column; 
-
   .card-center { 
     flex: 1;
     margin-top: 20px;
     color: #000;
-    border: 2px solid transparent; 
     border-radius: 30px;
-    width: 100%;
+    width: 80%;
     height: 300px;
     text-align: center; 
-    background-color: #fff;
+    background-color: #eee;
+    box-shadow: 0px 8px 26px -12px rgba(0,0,0,0.75);
   }
   .button-container { 
     flex: .6;
-    background-color: #fff;
+    button {
+      margin-top: 20px;
+      border-radius: 30px;
+      border: 1px solid #000;
+      width: 60px; 
+      height: 30px; 
+    }
   }
 `
 
@@ -34,6 +40,9 @@ const Card = ({
     <CardBody>
       <div className='card-center'>This is a flashcard</div>
       <div className='button-container'>
+        <button></button>
+        <button></button>
+        <button></button>
         <button></button>
       </div> 
     </CardBody>

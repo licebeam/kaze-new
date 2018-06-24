@@ -10,13 +10,13 @@ const MainBody = styled.div`
   flex-direction: column;
   .card-container { 
     flex: 1; 
-    background-color: #eee;
+    background-color: #fff;
     vertical-align: middle;
     display: flex;
   }
   .user-input { 
     flex: 1; 
-    background-color: #fff;
+    background-color: green;
   }
 `
 
