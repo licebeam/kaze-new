@@ -11,6 +11,8 @@ const MainBody = styled.div`
   .card-container { 
     flex: 1; 
     background-color: #eee;
+    vertical-align: middle;
+    display: flex;
   }
   .user-input { 
     flex: 1; 
