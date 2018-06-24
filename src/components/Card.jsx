@@ -93,7 +93,7 @@ const Card = ({
           <div> Japanese Lesson 1/20</div>
           <div><button>Flip</button></div>
         </div>
-        <div className='card-text'>This is a flashcard</div>
+        <div className='card-text'>	あか</div>
       </div>
       <div className='button-container-bottom'>
         <button>Repeat</button>
