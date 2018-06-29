@@ -25,17 +25,27 @@ const CardBody = styled.div`
     flex-direction: column; 
     .card-text { 
       flex: 1;
-      font-size: 2rem; 
+      font-size: 3rem; 
+      align-self: auto;
+      vertical-align: middle; 
+      justify-content: center; 
+    }
+    .sub-card-text { 
+      flex: 1;
+      font-size: 1rem;
     }
     .button-container-center { 
-      flex: .5;
+      flex: 1;
       display: flex;
       flex-direction: row;
+      align-self: auto;
+      vertical-align: middle; 
+      justify-content: center; 
       div { 
         flex: 1;
       }
       button {
-        margin: 20px 10px 0px 10px
+        margin: 20px 10px 0px 10px;
         border-radius: 50%;
         border: 1px solid #000;
         width: 50px; 
@@ -93,7 +103,8 @@ const Card = ({
           <div> Japanese Lesson 1/20</div>
           <div><button>Flip</button></div>
         </div>
-        <div className='card-text'>	あか</div>
+        <div className='card-text'>Flash Card</div>
+        <div className='sub-card-text'>Flash Card</div>
       </div>
       <div className='button-container-bottom'>
         <button>Repeat</button>

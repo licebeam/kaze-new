@@ -7,6 +7,12 @@ const HeaderBody = styled.div`
   height: 10vh;
   background-color: #000;
   color: #fff;
+  display: flex; 
+  text-align: center; 
+  div {
+    padding: 20px; 
+    flex: 1;
+  }
 `
 
 const Header = ({}) => {
