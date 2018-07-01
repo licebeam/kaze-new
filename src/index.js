@@ -6,7 +6,11 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+import { router } from 'sw-toolbox';
 
 
-ReactDOM.render(<KazeContainer />, document.getElementById('root'));
+ReactDOM.render(
+<Router>  
+  <KazeContainer />
+</Router>, document.getElementById('root'));
 
