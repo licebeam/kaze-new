@@ -57,7 +57,7 @@ class MainContainer extends Component {
     return (
       <Router>  
         <div>
-    <Route exact path="/" render={()=><LogIn db={this.db}/>}/>
+    <Route exact path="/" render={()=><LogIn db={db}/>}/>
         <Route exact path="/Home" component={KazeContainer}/>
         </div>
       </Router>
