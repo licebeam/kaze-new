@@ -47,18 +47,36 @@ tosUrl: '<your-tos-url>'
 };
 // The start method will wait until the DOM is loaded
 ui.start('#firebaseui-auth-container', uiConfig);
+
+let db = firebase.firestore();
+console.log(db);
+
+const dbadd = () => {
+  this.db.collection("users").add({
+    first: "Alan",
+    middle: "Mathison",
+    last: "Turing",
+    born: 1912
+  })
+  .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+  })
+  .catch(function(error) {
+      console.error("Error adding document: ", error);
+  });
+}
+
 class MainContainer extends Component {
   constructor(props){
     super(props)
-    let db = firebase.firestore();
-    console.log(db);
+    console.log(dbadd)
   }
   render() {
     return (
       <Router>  
         <div>
-    <Route exact path="/" render={()=><LogIn db={db}/>}/>
-        <Route exact path="/Home" component={KazeContainer}/>
+          <Route exact path="/" render={()=><LogIn dbadd={dbadd}/>}/>
+          <Route exact path="/Home" component={KazeContainer}/>
         </div>
       </Router>
     );

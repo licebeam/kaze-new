@@ -3,12 +3,16 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import KazeBody from './components/KazeBody';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
 
+const propTypes = {
+  dbadd: PropTypes.func,
+}
 const Container = styled.div `
   margin: 0 auto; 
   padding: 0;
@@ -16,21 +20,6 @@ const Container = styled.div `
   background-color: #eee;
   height: 100vh;
 `
-
-const dbAdd = () => {
-  db.collection("users").add({
-    first: "Alan",
-    middle: "Mathison",
-    last: "Turing",
-    born: 1912
-  })
-  .then(function(docRef) {
-      console.log("Document written with ID: ", docRef.id);
-  })
-  .catch(function(error) {
-      console.error("Error adding document: ", error);
-  });
-}
 class LogIn extends Component {
   constructor(props){
     super(props)
@@ -42,8 +31,9 @@ class LogIn extends Component {
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
         <div>
-          <button db={db} onClick={() => {
-            dbAdd();
+          <button dbadd={this.dbadd} onClick={() => {
+            this.dbadd();
+            console.log(this.dbadd)
           }}>
             <Link to='/Home'>
               Continue without logging in?
@@ -54,5 +44,5 @@ class LogIn extends Component {
     );
   }
 }
-
+LogIn.propTypes = PropTypes;
 export default LogIn;
