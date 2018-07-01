@@ -21,19 +21,17 @@ const Container = styled.div `
   height: 100vh;
 `
 class LogIn extends Component {
-  constructor(props){
-    super(props)
-  }
   render() {
+   const {dbadd} =  this.props;
     return (
       <Container>
         <h1>Kaze App test</h1>
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
         <div>
-          <button dbadd={this.dbadd} onClick={() => {
-            this.dbadd();
-            console.log(this.dbadd)
+          <button dbadd={dbadd} onClick={() => {
+            dbadd();
+            console.log(dbadd)
           }}>
             <Link to='/Home'>
               Continue without logging in?
@@ -44,5 +42,5 @@ class LogIn extends Component {
     );
   }
 }
-LogIn.propTypes = PropTypes;
+LogIn.propTypes = this.PropTypes;
 export default LogIn;

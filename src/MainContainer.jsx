@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import firebaseui from 'firebaseui'
 import firebase from 'firebase';
+
 var config = {
   apiKey: "AIzaSyC9kgL1DXJ-rjmVq7J6ghqofptEFajpb_0",
   authDomain: "kazeapp.firebaseapp.com",
@@ -18,6 +19,7 @@ var config = {
   storageBucket: "kazeapp.appspot.com",
   messagingSenderId: "92317655588"
 };
+
 firebase.initializeApp(config);
 // Initialize Cloud Firestore through Firebase
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -51,31 +53,37 @@ ui.start('#firebaseui-auth-container', uiConfig);
 let db = firebase.firestore();
 console.log(db);
 
-const dbadd = () => {
-  this.db.collection("users").add({
-    first: "Alan",
-    middle: "Mathison",
-    last: "Turing",
-    born: 1912
-  })
-  .then(function(docRef) {
-      console.log("Document written with ID: ", docRef.id);
-  })
-  .catch(function(error) {
-      console.error("Error adding document: ", error);
-  });
-}
 
 class MainContainer extends Component {
   constructor(props){
     super(props)
-    console.log(dbadd)
   }
+
+  dbadd = () => {
+      db.collection("users").add({
+      first: "Alan",
+      middle: "Mathison",
+      last: "Turing",
+      born: 1912
+    })
+    .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
+  }
+  
+
   render() {
     return (
       <Router>  
         <div>
-          <Route exact path="/" render={()=><LogIn dbadd={dbadd}/>}/>
+          <Route exact path="/" render={()=>
+              <LogIn 
+                dbadd={this.dbadd}
+              />}
+            />
           <Route exact path="/Home" component={KazeContainer}/>
         </div>
       </Router>
