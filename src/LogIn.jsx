@@ -18,7 +18,18 @@ const Container = styled.div `
 `
 
 const dbAdd = () => {
-
+  db.collection("users").add({
+    first: "Alan",
+    middle: "Mathison",
+    last: "Turing",
+    born: 1912
+  })
+  .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+  })
+  .catch(function(error) {
+      console.error("Error adding document: ", error);
+  });
 }
 class LogIn extends Component {
   render() {
@@ -28,7 +39,7 @@ class LogIn extends Component {
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
         <div>
-          <button onClick={() => {
+          <button db={db} onClick={() => {
             dbAdd();
           }}>
             <Link to='/Home'>
