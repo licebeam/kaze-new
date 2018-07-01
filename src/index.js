@@ -11,12 +11,7 @@ import {
 import firebaseui from 'firebaseui'
 import firebase from 'firebase';
 var config = {
-  apiKey: "AIzaSyC9kgL1DXJ-rjmVq7J6ghqofptEFajpb_0",
-  authDomain: "kazeapp.firebaseapp.com",
-  databaseURL: "https://kazeapp.firebaseio.com",
-  projectId: "kazeapp",
-  storageBucket: "kazeapp.appspot.com",
-  messagingSenderId: "92317655588"
+
 };
 firebase.initializeApp(config);
 // Initialize Cloud Firestore through Firebase
