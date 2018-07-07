@@ -11,9 +11,9 @@ import {
 } from 'react-router-dom'
 
 const propTypes = {
-  dbadd: PropTypes.func,
+  getDeck: PropTypes.func,
 }
-const Container = styled.div `
+const Container = styled.div`
   margin: 0 auto; 
   padding: 0;
   overflow-x: hidden;
@@ -22,18 +22,17 @@ const Container = styled.div `
 `
 class LogIn extends Component {
   render() {
-   const {dbadd} =  this.props;
+    const { getDecks } = this.props;
     return (
       <Container>
         <h1>Kaze App test</h1>
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
         <div>
-          <button dbadd={dbadd} onClick={() => {
-            dbadd();
-            console.log(dbadd)
+          <button onClick={() => {
+            getDecks();
           }}>
-            <Link to='/Home'>
+            <Link to='/Decks'>
               Continue without logging in?
             </Link>
           </button>

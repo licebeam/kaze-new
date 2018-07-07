@@ -1,5 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
 
 const CardBody = styled.div`
@@ -95,10 +100,16 @@ const Card = ({
   return (
     <CardBody>
       <div className='button-container-top'>
-        <div><button>BACK</button></div>
+        <div>
+          <button>
+            <Link to='/Decks'>
+              Back
+            </Link>
+          </button>
+        </div>
         <div><button>NEXT CARD</button></div>
         <div>Time Spent on card</div>
-      </div> 
+      </div>
       <div className='card-center'>
         <div className='button-container-center'>
           <div><button>Hint</button></div>
@@ -113,8 +124,8 @@ const Card = ({
         <button>Easy</button>
         <button>Medium</button>
         <button>Hard</button>
-      </div> 
-      
+      </div>
+
     </CardBody>
   )
 }
