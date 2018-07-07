@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 
@@ -20,11 +20,11 @@ const MainBody = styled.div`
   }
 `
 
-const KazeBody = ({}) => {
+const KazeBody = ({ }) => {
   return (
     <MainBody>
       <div className='card-container'>
-        <Card/>
+        <Card />
       </div>
       <div className='user-input'>User Input? and perhaps a progress bar for the current card set?</div>
     </MainBody>

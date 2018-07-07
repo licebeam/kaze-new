@@ -9,7 +9,7 @@ const Container = styled.div`
   padding: 0;
   overflow-x: hidden;
   background-color: #eee;
-  height: 100vh;
+  height: 80vh;
 `
 
 class KazeContainer extends Component {

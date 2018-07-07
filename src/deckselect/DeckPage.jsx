@@ -27,7 +27,7 @@ const Container = styled.div`
   padding: 0;
   overflow-x: hidden;
   background-color: #fff;
-  height: 100vh;
+  height: 80vh;
 `
 class DeckPage extends Component {
   render() {
