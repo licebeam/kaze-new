@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 
 const FooterBody = styled.div`
   width: 100%;
   height: 10vh;
-  background-color: #eee;
+  background-color: black;
 `
 
-const Footer = ({}) => {
+const Footer = ({ }) => {
   return (
-    <FooterBody/>
+    <FooterBody />
   )
 }
 

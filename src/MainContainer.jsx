@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import KazeContainer from './KazeContainer.jsx';
 import LogIn from './LogIn.jsx';
-import DeckPage from './deckselect/DeckPage'
+import DeckPage from './deckselect/DeckPage';
 import { router } from 'sw-toolbox';
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom';
-import firebaseui from 'firebaseui'
+import firebaseui from 'firebaseui';
 import firebase from 'firebase';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 var config = {
   apiKey: "AIzaSyC9kgL1DXJ-rjmVq7J6ghqofptEFajpb_0",
@@ -18,7 +20,7 @@ var config = {
   databaseURL: "https://kazeapp.firebaseio.com",
   projectId: "kazeapp",
   storageBucket: "kazeapp.appspot.com",
-  messagingSenderId: "92317655588"
+  messagingSenderId: "92317655588",
 };
 
 firebase.initializeApp(config);
@@ -73,7 +75,7 @@ class MainContainer extends Component {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          deckIterator.push(doc.data().group)
+          deckIterator.push({ name: doc.data().group })
           deckIterator !== [] ? this.setState({ deckList: deckIterator }) : null;
         });
       })
@@ -106,6 +108,7 @@ class MainContainer extends Component {
     return (
       <Router>
         <div>
+          <Header />
           <Route exact path="/" render={() =>
             <LogIn
               getDecks={this.getDecks}
@@ -119,6 +122,7 @@ class MainContainer extends Component {
             />}
           />
           <Route exact path="/Home" component={KazeContainer} />
+          <Footer />
         </div>
       </Router>
     );

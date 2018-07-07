@@ -17,7 +17,7 @@ const Container = styled.div`
   margin: 0 auto; 
   padding: 0;
   overflow-x: hidden;
-  background-color: #eee;
+  background-color: #fff;
   height: 100vh;
 `
 class LogIn extends Component {
