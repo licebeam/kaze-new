@@ -96,6 +96,8 @@ const CardBody = styled.div`
 
 const Card = ({
   cardText,
+  currentDeck,
+  cardList,
 }) => {
   return (
     <CardBody>
@@ -113,7 +115,7 @@ const Card = ({
       <div className='card-center'>
         <div className='button-container-center'>
           <div><button>Hint</button></div>
-          <div> Japanese Lesson 1/20</div>
+          <div> {currentDeck} 1/20</div>
           <div><button>Flip</button></div>
         </div>
         <div className='card-text'>Flash Card</div>

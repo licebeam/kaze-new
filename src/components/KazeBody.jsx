@@ -20,11 +20,11 @@ const MainBody = styled.div`
   }
 `
 
-const KazeBody = ({ }) => {
+const KazeBody = ({ cardList, currentDeck }) => {
   return (
     <MainBody>
       <div className='card-container'>
-        <Card />
+        <Card cardList={cardList} currentDeck={currentDeck} />
       </div>
       <div className='user-input'>User Input? and perhaps a progress bar for the current card set?</div>
     </MainBody>

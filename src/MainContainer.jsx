@@ -15,7 +15,12 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 var config = {
-
+  apiKey: "AIzaSyC9kgL1DXJ-rjmVq7J6ghqofptEFajpb_0",
+  authDomain: "kazeapp.firebaseapp.com",
+  databaseURL: "https://kazeapp.firebaseio.com",
+  projectId: "kazeapp",
+  storageBucket: "kazeapp.appspot.com",
+  messagingSenderId: "92317655588",
 };
 
 firebase.initializeApp(config);
@@ -37,7 +42,7 @@ var uiConfig = {
   },
   // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
   signInFlow: 'popup',
-  signInSuccessUrl: '/Home',
+  signInSuccessUrl: '/Decks',
   signInOptions: [
     // Leave the lines as is for the providers you want to offer your users.
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -85,9 +90,10 @@ class MainContainer extends Component {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          cardIterator.push({ kana: doc.data().kana }) //append by kana 
+          cardIterator.push({ cards: doc.data().card }) //append by kana 
           cardIterator !== [] ? this.setState({ cardList: cardIterator }) : null;
-          console.log(this.state.cardList)
+          console.log(this.state.cardList);
+          this.setState({ currentDeck: deck_name });
         });
       })
       .catch(function (error) {
@@ -116,7 +122,13 @@ class MainContainer extends Component {
               getCards={this.getCards}
             />}
           />
-          <Route exact path="/Home" component={KazeContainer} />
+          <Route exact path="/Home" render={() =>
+            <KazeContainer
+              cardList={this.state.cardList}
+              currentDeck={this.state.currentDeck}
+              currentCard={this.state.currentCard}
+            />}
+          />
           <Footer />
         </div>
       </Router>

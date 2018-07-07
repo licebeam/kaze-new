@@ -9,7 +9,6 @@ import {
 import Header from '../components/Header';
 
 const propTypes = {
-  currentDeck: PropTypes.string,
   deckList: PropTypes.array,
   getCards: PropTypes.func,
 };
@@ -31,6 +30,7 @@ const Container = styled.div`
 `
 class DeckPage extends Component {
   render() {
+    const { getCards } = this.props;
     return (
       <Container>
         <h1>Select Deck</h1>
@@ -41,9 +41,11 @@ class DeckPage extends Component {
         </button>
         {this.props.deckList.map(deck => {
           return (
-            <Deck>
+            <Deck getCards={this.getCards}>
               <h2 key='deckName'>{deck.name}</h2>
-              <button>
+              <button onClick={() => {
+                getCards(deck.name);
+              }}>
                 <Link to='/Home'>
                   Continue without logging in?
               </Link>
