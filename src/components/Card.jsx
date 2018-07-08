@@ -118,61 +118,82 @@ const Card = ({
   hintShown,
   showHint,
 }) => {
-  return (
-    <CardBody>
-      <div className='button-container-top'>
-        <div>
-          <button>
-            <Link to='/Decks'>
-              Back
+  if (cardList.length >= 1) {
+    return (
+      <CardBody>
+        <div className='button-container-top'>
+          <div>
+            <button>
+              <Link to='/Decks'>
+                Back
             </Link>
-          </button>
-        </div>
-        <div>
-          <button onClick={() => {
+            </button>
+          </div>
+          <div>
+            {/* <button onClick={() => {
             updateCard(currentCard.id);
           }}
           >
             NEXT CARD
-          </button>
-          <button onClick={() => {
-            prevCard(currentCard.id);
-          }}
-          >
-            PREV CARD
-          </button>
-        </div>
-        <div>Time Spent on card</div>
-      </div>
-      <div className='card-center'>
-        <div className='button-container-center'>
-          <div>
+          </button> */}
             <button onClick={() => {
+              prevCard(currentCard.id);
+            }}
+            >
+              PREV CARD
+          </button>
+          </div>
+          <div>Time Spent on card</div>
+        </div>
+        <div className='card-center'>
+          <div className='button-container-center'>
+            <div>
+              {/* <button onClick={() => {
               showHint();
             }}>
               Hint
+            </button> */}
+            </div>
+            <div> {currentDeck}</div>
+            <div>
+              <button onClick={() => {
+                flipCard();
+              }}
+              >
+                Flip
             </button>
+            </div>
           </div>
-          <div> {currentDeck}</div>
-          <div>
-            <button onClick={() => {
-              flipCard();
-            }}
-            >
-              Flip
-            </button>
-          </div>
+          <div className='card-text'>{cardFlipped === 'back' ? currentCard.flip : currentCard.kana}</div>
+          <div className='sub-card-text'>{cardFlipped === 'back' ? currentCard.sub : ''}</div>
+          <div>{hintShown === true ? 'HINT: ' + currentCard.hint : ''} </div>
         </div>
-        <div className='card-text'>{cardFlipped === 'back' ? currentCard.flip : currentCard.kana}</div>
-        <div className='sub-card-text'>{cardFlipped === 'back' ? currentCard.sub : ''}</div>
-        <div>{hintShown === true ? 'HINT: ' + currentCard.hint : ''} </div>
-      </div>
-      <div className='button-container-bottom'>
-        <button>Difficult</button>
-        <button>Easy</button>
-      </div>
+        <div className='button-container-bottom'>
+          <button onClick={() => {
+            updateCard(currentCard.id);
+          }}
+          >
+            Difficult
+        </button>
+          <button onClick={() => {
+            updateCard(currentCard.id);
+          }}
+          >
+            Easy
+        </button>
+        </div>
 
-    </CardBody>
+      </CardBody>
+    )
+  } else return (
+    <div>
+      <button>
+        <Link to='/Decks'>
+          Back
+            </Link>
+      </button>
+      <div>Please Choose a Deck</div>
+    </div>
   )
 }
 
