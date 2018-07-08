@@ -27,6 +27,7 @@ const KazeBody = ({
   updateCard,
   cardFlipped,
   flipCard,
+  prevCard
 }) => {
   return (
     <MainBody>
@@ -38,6 +39,7 @@ const KazeBody = ({
           updateCard={updateCard}
           cardFlipped={cardFlipped}
           flipCard={flipCard}
+          prevCard={prevCard}
         />
       </div>
       <div className='user-input'>User Input? and perhaps a progress bar for the current card set?</div>

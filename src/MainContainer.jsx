@@ -105,9 +105,14 @@ class MainContainer extends Component {
   }
 
   updateCard = (cardId) => {
-    console.log(this.state.cardList);
-    this.setState({ currentCard: this.state.cardList[0].cards[cardId + 1] })
-    console.log(this.state.currentCard)
+    const curCard = cardId - 1;
+    const cards = this.state.cardList[0].cards;
+    this.setState({ currentCard: cards[cards.length > curCard + 1 ? curCard + 1 : 0] })
+  }
+  prevCard = (cardId) => {
+    const curCard = cardId - 1;
+    const cards = this.state.cardList[0].cards;
+    this.setState({ currentCard: cards[curCard >= 1 ? curCard - 1 : cards.length - 1] })
   }
 
   flipCard = () => {
@@ -140,6 +145,7 @@ class MainContainer extends Component {
               currentDeck={this.state.currentDeck}
               currentCard={this.state.currentCard}
               updateCard={this.updateCard}
+              prevCard={this.prevCard}
               cardFlipped={this.state.cardFlipped}
               flipCard={this.flipCard}
             />}

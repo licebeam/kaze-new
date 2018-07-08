@@ -102,6 +102,7 @@ const Card = ({
   updateCard,
   cardFlipped,
   flipCard,
+  prevCard,
 }) => {
   return (
     <CardBody>
@@ -120,13 +121,19 @@ const Card = ({
           >
             NEXT CARD
           </button>
+          <button onClick={() => {
+            prevCard(currentCard.id);
+          }}
+          >
+            PREV CARD
+          </button>
         </div>
         <div>Time Spent on card</div>
       </div>
       <div className='card-center'>
         <div className='button-container-center'>
           <div><button>Hint</button></div>
-          <div> {currentDeck} {currentCard.id + '/' + cardList.length}</div>
+          <div> {currentDeck} {currentCard.id + '/' + (cardList.length + 1)}</div>
           <div>
             <button onClick={() => {
               flipCard();

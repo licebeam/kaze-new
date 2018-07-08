@@ -12,6 +12,7 @@ const propTypes = {
   updateCard: PropTypes.func,
   cardFlipped: PropTypes.bool,
   flipCard: PropTypes.func,
+  prevCard: PropTypes.func,
 };
 
 const Container = styled.div`
@@ -31,6 +32,7 @@ class KazeContainer extends Component {
       updateCard,
       flipCard,
       cardFlipped,
+      prevCard,
     } = this.props;
     return (
       <Container>
@@ -41,6 +43,7 @@ class KazeContainer extends Component {
           updateCard={updateCard}
           cardFlipped={cardFlipped}
           flipCard={flipCard}
+          prevCard={prevCard}
         />
       </Container>
     );
