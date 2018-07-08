@@ -8,6 +8,7 @@ const MainBody = styled.div`
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  font-family: 'Roboto', sans-serif;
   .card-container { 
     flex: 1; 
     background-color: #fff;

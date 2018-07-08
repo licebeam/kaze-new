@@ -21,6 +21,7 @@ const Container = styled.div`
   overflow-x: hidden;
   background-color: #eee;
   height: 80vh;
+  font-family: 'Roboto', sans-serif;
 `
 
 class KazeContainer extends Component {

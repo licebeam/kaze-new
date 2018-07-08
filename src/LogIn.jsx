@@ -19,6 +19,7 @@ const Container = styled.div`
   overflow-x: hidden;
   background-color: #fff;
   height: 80vh;
+  font-family: 'Roboto', sans-serif;
 `
 class LogIn extends Component {
   render() {

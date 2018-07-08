@@ -30,7 +30,7 @@ const CardBody = styled.div`
     flex-direction: column; 
     .card-text { 
       flex: 1;
-      font-size: 3rem; 
+      font-size: 2rem; 
       align-self: auto;
       vertical-align: middle; 
       justify-content: center; 
