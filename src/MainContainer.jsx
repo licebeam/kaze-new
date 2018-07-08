@@ -123,7 +123,6 @@ class MainContainer extends Component {
         console.log("Error getting documents: ", error);
       });
   }
-
   updateCard = (cardId) => {
     const curCard = cardId - 1;
     const cards = this.state.cardList[0].cards;

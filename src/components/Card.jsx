@@ -153,7 +153,7 @@ const Card = ({
               Hint
             </button>
           </div>
-          <div> {currentDeck} {currentCard.id + '/' + (cardList.length + 1)}</div>
+          <div> {currentDeck}</div>
           <div>
             <button onClick={() => {
               flipCard();
