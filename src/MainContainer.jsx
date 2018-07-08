@@ -64,8 +64,9 @@ class MainContainer extends Component {
     this.state = {
       currentDeck: [],
       deckList: [],
-      cardList: [{}],
+      cardList: [],
       currentCard: [],
+      cardFlipped: false,
     }
   }
 
@@ -94,6 +95,8 @@ class MainContainer extends Component {
           cardIterator !== [] ? this.setState({ cardList: cardIterator }) : null;
           console.log(this.state.cardList);
           this.setState({ currentDeck: deck_name });
+          this.setState({ currentCard: this.state.cardList[0].cards[0] })
+          console.log(this.state.currentCard)
         });
       })
       .catch(function (error) {
@@ -101,8 +104,18 @@ class MainContainer extends Component {
       });
   }
 
-  changeDeck = (title) => {
+  updateCard = (cardId) => {
+    console.log(this.state.cardList);
+    this.setState({ currentCard: this.state.cardList[0].cards[cardId + 1] })
+    console.log(this.state.currentCard)
+  }
 
+  flipCard = () => {
+    const { cardFlipped } = this.state
+    cardFlipped === false
+      ? this.setState({ cardFlipped: true })
+      : this.setState({ cardFlipped: false })
+    console.log('flipped' + cardFlipped)
   }
 
   render() {
@@ -127,6 +140,9 @@ class MainContainer extends Component {
               cardList={this.state.cardList}
               currentDeck={this.state.currentDeck}
               currentCard={this.state.currentCard}
+              updateCard={this.updateCard}
+              cardFlipped={this.cardFlipped}
+              flipCard={this.flipCard}
             />}
           />
           <Footer />

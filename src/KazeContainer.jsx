@@ -8,6 +8,10 @@ import styled from 'styled-components';
 const propTypes = {
   currentDeck: PropTypes.string,
   cardList: PropTypes.array,
+  currentCard: PropTypes.object,
+  updateCard: PropTypes.func,
+  cardFlipped: PropTypes.bool,
+  flipCard: PropTypes.func,
 };
 
 const Container = styled.div`
@@ -20,10 +24,24 @@ const Container = styled.div`
 
 class KazeContainer extends Component {
   render() {
-    const { currentDeck, cardList } = this.props;
+    const {
+      currentDeck,
+      cardList,
+      currentCard,
+      updateCard,
+      flipCard,
+      cardFlipped,
+    } = this.props;
     return (
       <Container>
-        <KazeBody currentDeck={currentDeck} cardList={cardList} />
+        <KazeBody
+          currentDeck={currentDeck}
+          cardList={cardList}
+          currentCard={currentCard}
+          updateCard={updateCard}
+          cardFlipped={cardFlipped}
+          flipCard={flipCard}
+        />
       </Container>
     );
   }

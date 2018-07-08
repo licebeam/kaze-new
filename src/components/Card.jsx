@@ -98,6 +98,10 @@ const Card = ({
   cardText,
   currentDeck,
   cardList,
+  currentCard,
+  updateCard,
+  cardFlipped,
+  flipCard,
 }) => {
   return (
     <CardBody>
@@ -109,17 +113,25 @@ const Card = ({
             </Link>
           </button>
         </div>
-        <div><button>NEXT CARD</button></div>
+        <div><button onClick={() => {
+          updateCard(currentCard.id);
+        }}>NEXT CARD</button></div>
         <div>Time Spent on card</div>
       </div>
       <div className='card-center'>
         <div className='button-container-center'>
           <div><button>Hint</button></div>
-          <div> {currentDeck} 1/20</div>
-          <div><button>Flip</button></div>
+          <div> {currentDeck} {currentCard.id + '/' + cardList.length}</div>
+          <div>
+            <button onClick={() => {
+              flipCard();
+            }}>
+              Flip
+            </button>
+          </div>
         </div>
-        <div className='card-text'>Flash Card</div>
-        <div className='sub-card-text'>Flash Card</div>
+        <div className='card-text'>{currentCard.kana}</div>
+        <div className='sub-card-text'>{currentCard.sub}</div>
       </div>
       <div className='button-container-bottom'>
         <button>Repeat</button>
