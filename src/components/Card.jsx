@@ -103,6 +103,8 @@ const Card = ({
   cardFlipped,
   flipCard,
   prevCard,
+  hintShown,
+  showHint,
 }) => {
   return (
     <CardBody>
@@ -132,12 +134,17 @@ const Card = ({
       </div>
       <div className='card-center'>
         <div className='button-container-center'>
-          <div><button>Hint</button></div>
+          <div>
+            <button onClick={() => {
+              showHint();
+            }}>
+              Hint
+            </button>
+          </div>
           <div> {currentDeck} {currentCard.id + '/' + (cardList.length + 1)}</div>
           <div>
             <button onClick={() => {
               flipCard();
-              console.log(cardFlipped)
             }}
             >
               Flip
@@ -146,6 +153,7 @@ const Card = ({
         </div>
         <div className='card-text'>{cardFlipped === 'back' ? currentCard.flip : currentCard.kana}</div>
         <div className='sub-card-text'>{cardFlipped === 'back' ? currentCard.sub : ''}</div>
+        <div>{hintShown === true ? 'HINT: ' + currentCard.hint : ''} </div>
       </div>
       <div className='button-container-bottom'>
         <button>Repeat</button>

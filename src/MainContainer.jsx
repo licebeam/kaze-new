@@ -67,6 +67,7 @@ class MainContainer extends Component {
       cardList: [],
       currentCard: [],
       cardFlipped: 'front',
+      hintShown: false,
     }
   }
 
@@ -122,6 +123,13 @@ class MainContainer extends Component {
       : this.setState({ cardFlipped: 'front' })
   }
 
+  showHint = () => {
+    const { hintShown } = this.state
+    hintShown === false
+      ? this.setState({ hintShown: true })
+      : this.setState({ hintShown: false })
+  }
+
   render() {
     return (
       <Router>
@@ -148,6 +156,8 @@ class MainContainer extends Component {
               prevCard={this.prevCard}
               cardFlipped={this.state.cardFlipped}
               flipCard={this.flipCard}
+              hintShown={this.state.hintShown}
+              showHint={this.showHint}
             />}
           />
           <Footer />

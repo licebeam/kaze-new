@@ -33,6 +33,8 @@ class KazeContainer extends Component {
       flipCard,
       cardFlipped,
       prevCard,
+      hintShown,
+      showHint,
     } = this.props;
     return (
       <Container>
@@ -44,6 +46,8 @@ class KazeContainer extends Component {
           cardFlipped={cardFlipped}
           flipCard={flipCard}
           prevCard={prevCard}
+          hintShown={hintShown}
+          showHint={showHint}
         />
       </Container>
     );
