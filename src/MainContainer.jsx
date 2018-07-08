@@ -106,6 +106,9 @@ class MainContainer extends Component {
   }
 
   getCards = (deck_name) => { //gets all cards by group name 
+    this.setState({ currentDeck: [] });
+    this.setState({ currentCard: [] });
+    this.setState({ cardList: [] });
     const cardIterator = [];
     db.collection("cards").where('group', '==', deck_name)
       .get()

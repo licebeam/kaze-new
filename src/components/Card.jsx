@@ -118,7 +118,7 @@ const Card = ({
   hintShown,
   showHint,
 }) => {
-  if (cardList.length >= 1) {
+  if (currentDeck.length >= 1) {
     return (
       <CardBody>
         <div className='button-container-top'>
