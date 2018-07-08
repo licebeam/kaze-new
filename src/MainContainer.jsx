@@ -9,7 +9,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-import firebaseui from 'firebaseui';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -25,37 +25,26 @@ var config = {
 
 firebase.initializeApp(config);
 // Initialize Cloud Firestore through Firebase
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
-var uiConfig = {
-  callbacks: {
-    signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-      // User successfully signed in.
-      // Return type determines whether we continue the redirect automatically
-      // or whether we leave that to developer to handle.
-      return true;
-    },
-    uiShown: function () {
-      // The widget is rendered.
-      // Hide the loader.
-      document.getElementById('loader').style.display = 'none';
-    }
-  },
-  // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+// var ui = new firebaseui.auth.AuthUI(firebase.auth());
+// Configure FirebaseUI.
+const uiConfig = {
+  // Popup signin flow rather than redirect flow.
   signInFlow: 'popup',
+  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
   signInSuccessUrl: '/Decks',
+  // We will display Google and Facebook as auth providers.
   signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-  ],
-  // Terms of service url.
-  tosUrl: '<your-tos-url>'
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID
+  ]
 };
 // The start method will wait until the DOM is loaded
-ui.start('#firebaseui-auth-container', uiConfig);
+
+// ui.start('#firebaseui-auth-container', uiConfig);
 const firestore = firebase.firestore();
 const settings = {/* your settings... */ timestampsInSnapshots: true };
 firestore.settings(settings);
-let db = firebase.firestore();
+var db = firebase.firestore();
 
 class MainContainer extends Component {
   constructor(props) {
@@ -68,11 +57,37 @@ class MainContainer extends Component {
       currentCard: [],
       cardFlipped: 'front',
       hintShown: false,
+      //user state
+      userHandle: '',
+
     }
   }
   componentDidMount() {
     this.getDecks();
+    this.logInSet();
   }
+
+  logInSet = () => {
+    const { userHandle } = this.state;
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in.
+        console.log('user is signed in')
+        this.setState({ userHandle: user.displayName })
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var providerData = user.providerData;
+        // ...
+      } else {
+        // User is signed out.
+        // ...
+      }
+    });
+  }
+
   getDecks = () => { //gets all decks by group
     const deckIterator = [];
     db.collection("cards")
@@ -133,13 +148,17 @@ class MainContainer extends Component {
   }
 
   render() {
+
     return (
       <Router>
         <div>
-          <Header />
+          <Header
+            userHandle={this.state.userHandle}
+          />
           <Route exact path="/" render={() =>
             <LogIn
-              getDecks={this.getDecks}
+              uiConfig={uiConfig}
+              firebaseAuth={firebase.auth()}
             />}
           />
           <Route exact path="/Decks" render={() =>

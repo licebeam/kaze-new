@@ -9,7 +9,8 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import firebaseui from 'firebaseui';
+import firebase from 'firebase';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 const propTypes = {
   getDeck: PropTypes.func,
@@ -24,11 +25,15 @@ const Container = styled.div`
 `
 class LogIn extends Component {
   render() {
-    const { getDecks } = this.props;
+    const {
+      getDecks,
+      uiConfig,
+      firebaseAuth,
+    } = this.props;
     return (
       <Container>
         <h1>Kaze App test</h1>
-        <div id="firebaseui-auth-container"></div>
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
         <div id="loader">Loading...</div>
         <div>
           <button>

@@ -16,13 +16,13 @@ const HeaderBody = styled.div`
   }
 `
 
-const Header = ({ }) => {
+const Header = ({ userHandle }) => {
   return (
     <HeaderBody>
       <div>Kaze Logo</div>
       <div>image</div>
       <div>settings</div>
-      <div>UserName</div>
+      <div>{userHandle}</div>
     </HeaderBody>
   )
 }
