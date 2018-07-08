@@ -9,6 +9,7 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+import firebaseui from 'firebaseui';
 
 const propTypes = {
   getDeck: PropTypes.func,
@@ -30,15 +31,13 @@ class LogIn extends Component {
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
         <div>
-          <button onClick={() => {
-            getDecks();
-          }}>
+          <button>
             <Link to='/Decks'>
               Continue without logging in?
             </Link>
           </button>
         </div>
-      </Container>
+      </Container >
     );
   }
 }

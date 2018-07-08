@@ -70,7 +70,9 @@ class MainContainer extends Component {
       hintShown: false,
     }
   }
-
+  componentDidMount() {
+    this.getDecks();
+  }
   getDecks = () => { //gets all decks by group
     const deckIterator = [];
     db.collection("cards")
@@ -145,6 +147,7 @@ class MainContainer extends Component {
               deckList={this.state.deckList}
               currentDeck={this.state.currentDeck}
               getCards={this.getCards}
+              getDecks={this.getDecks}
             />}
           />
           <Route exact path="/Home" render={() =>

@@ -11,6 +11,7 @@ import Header from '../components/Header';
 const propTypes = {
   deckList: PropTypes.array,
   getCards: PropTypes.func,
+  getDecks: PropTypes.func,
 };
 
 const Deck = styled.div`
@@ -30,8 +31,9 @@ const Container = styled.div`
   font-family: 'Roboto', sans-serif;
 `
 class DeckPage extends Component {
+
   render() {
-    const { getCards } = this.props;
+    const { getCards, getDecks } = this.props;
     return (
       <Container>
         <h1>Select Deck</h1>
