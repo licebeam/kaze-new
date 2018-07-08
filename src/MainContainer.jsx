@@ -66,7 +66,7 @@ class MainContainer extends Component {
       deckList: [],
       cardList: [],
       currentCard: [],
-      cardFlipped: false,
+      cardFlipped: 'front',
     }
   }
 
@@ -112,10 +112,9 @@ class MainContainer extends Component {
 
   flipCard = () => {
     const { cardFlipped } = this.state
-    cardFlipped === false
-      ? this.setState({ cardFlipped: true })
-      : this.setState({ cardFlipped: false })
-    console.log('flipped' + cardFlipped)
+    cardFlipped === 'front'
+      ? this.setState({ cardFlipped: 'back' })
+      : this.setState({ cardFlipped: 'front' })
   }
 
   render() {
@@ -141,7 +140,7 @@ class MainContainer extends Component {
               currentDeck={this.state.currentDeck}
               currentCard={this.state.currentCard}
               updateCard={this.updateCard}
-              cardFlipped={this.cardFlipped}
+              cardFlipped={this.state.cardFlipped}
               flipCard={this.flipCard}
             />}
           />

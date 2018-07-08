@@ -113,9 +113,14 @@ const Card = ({
             </Link>
           </button>
         </div>
-        <div><button onClick={() => {
-          updateCard(currentCard.id);
-        }}>NEXT CARD</button></div>
+        <div>
+          <button onClick={() => {
+            updateCard(currentCard.id);
+          }}
+          >
+            NEXT CARD
+          </button>
+        </div>
         <div>Time Spent on card</div>
       </div>
       <div className='card-center'>
@@ -125,13 +130,15 @@ const Card = ({
           <div>
             <button onClick={() => {
               flipCard();
-            }}>
+              console.log(cardFlipped)
+            }}
+            >
               Flip
             </button>
           </div>
         </div>
-        <div className='card-text'>{currentCard.kana}</div>
-        <div className='sub-card-text'>{currentCard.sub}</div>
+        <div className='card-text'>{cardFlipped === 'back' ? currentCard.flip : currentCard.kana}</div>
+        <div className='sub-card-text'>{cardFlipped === 'back' ? currentCard.sub : ''}</div>
       </div>
       <div className='button-container-bottom'>
         <button>Repeat</button>
