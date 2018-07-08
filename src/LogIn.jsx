@@ -32,7 +32,7 @@ class LogIn extends Component {
     } = this.props;
     return (
       <Container>
-        <h1>Kaze App test</h1>
+        <h1>Please Log In</h1>
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
         <div>
           <button>

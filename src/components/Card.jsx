@@ -55,6 +55,10 @@ const CardBody = styled.div`
         border: 1px solid #000;
         width: 50px; 
         height: 50px; 
+        transition: all 1s; 
+        &:hover{
+        background-color: red;
+        }
       }
     }
   }
@@ -71,6 +75,10 @@ const CardBody = styled.div`
       border: 1px solid #000;
       width: 60px; 
       height: 30px; 
+      transition: all 1s; 
+      &:hover{
+        background-color: red;
+      }
     }
   }
   .button-container-top { 
@@ -89,6 +97,10 @@ const CardBody = styled.div`
       border: 1px solid #000;
       width: 60px; 
       height: 30px; 
+      transition: all 1s; 
+      &:hover{
+        background-color: red;
+      }
     }
   }
   
@@ -156,10 +168,8 @@ const Card = ({
         <div>{hintShown === true ? 'HINT: ' + currentCard.hint : ''} </div>
       </div>
       <div className='button-container-bottom'>
-        <button>Repeat</button>
+        <button>Difficult</button>
         <button>Easy</button>
-        <button>Medium</button>
-        <button>Hard</button>
       </div>
 
     </CardBody>

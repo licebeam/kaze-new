@@ -37,11 +37,6 @@ class DeckPage extends Component {
     return (
       <Container>
         <h1>Select Deck</h1>
-        <button>
-          <Link to='/'>
-            Back To Login
-          </Link>
-        </button>
         {this.props.deckList.map(deck => {
           return (
             <Deck getCards={this.getCards}>
@@ -50,12 +45,17 @@ class DeckPage extends Component {
                 getCards(deck.name);
               }}>
                 <Link to='/Home'>
-                  Continue without logging in?
+                  Select Deck
               </Link>
               </button>
             </Deck>
           )
         })}
+        <button>
+          <Link to='/'>
+            Back To Login
+          </Link>
+        </button>
       </Container>
     );
   }

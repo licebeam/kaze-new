@@ -27,7 +27,7 @@ const Header = ({
 }) => {
   return (
     <HeaderBody>
-      <div>Kaze Logo</div>
+      <h1>Kaze</h1>
       <div></div>
       <div><img src={userPhoto} alt="" /></div>
       <div>{userHandle}</div>
