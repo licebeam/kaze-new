@@ -34,7 +34,6 @@ class LogIn extends Component {
       <Container>
         <h1>Kaze App test</h1>
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-        <div id="loader">Loading...</div>
         <div>
           <button>
             <Link to='/Decks'>

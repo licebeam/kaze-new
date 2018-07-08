@@ -59,6 +59,10 @@ class MainContainer extends Component {
       hintShown: false,
       //user state
       userHandle: '',
+      userEmail: '',
+      userPhoto: '',
+      userUid: '',
+      userProviderData: '',
 
     }
   }
@@ -74,12 +78,10 @@ class MainContainer extends Component {
         // User is signed in.
         console.log('user is signed in')
         this.setState({ userHandle: user.displayName })
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var photoURL = user.photoURL;
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        var providerData = user.providerData;
+        this.setState({ userEmail: user.email })
+        this.setState({ userPhoto: user.photoURL })
+        this.setState({ userUid: user.uid })
+        this.setState({ userProviderData: user.providerData })
         // ...
       } else {
         // User is signed out.
@@ -154,6 +156,7 @@ class MainContainer extends Component {
         <div>
           <Header
             userHandle={this.state.userHandle}
+            userPhoto={this.state.userPhoto}
           />
           <Route exact path="/" render={() =>
             <LogIn
