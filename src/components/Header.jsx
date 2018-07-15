@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
 const HeaderBody = styled.div`
   width: 100%;
@@ -29,8 +33,11 @@ const Header = ({
     <HeaderBody>
       <h1>Kaze</h1>
       <div></div>
-      <div><img src={userPhoto} alt="" /></div>
-      <div>{userHandle}</div>
+      <Link to='/Profile'>
+        <div><img src={userPhoto} alt="" /></div>
+        <div>{userHandle}</div>
+      </Link>
+
     </HeaderBody>
   )
 }

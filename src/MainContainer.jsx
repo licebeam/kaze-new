@@ -13,6 +13,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import UserProfile from './userprofile/UserProfile'
 
 var config = {
   apiKey: "AIzaSyC9kgL1DXJ-rjmVq7J6ghqofptEFajpb_0",
@@ -250,6 +251,14 @@ class MainContainer extends Component {
           />
           <Route exact path="/Decks" render={() =>
             <DeckPage
+              deckList={this.state.deckList}
+              currentDeck={this.state.currentDeck}
+              getCards={this.getCards}
+              getDecks={this.getDecks}
+            />}
+          />
+          <Route exact path="/Profile" render={() =>
+            <UserProfile
               deckList={this.state.deckList}
               currentDeck={this.state.currentDeck}
               getCards={this.getCards}
