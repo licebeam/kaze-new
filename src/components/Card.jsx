@@ -140,6 +140,7 @@ const CardBody = styled.div`
       font-size: 1rem;
       transition: all 1s; 
       border: none;
+      color: #fff;
       background-color: #145674;
       &:hover{
         background-color: #048CAC;
@@ -165,6 +166,7 @@ const Card = ({
   getRating,
   currentRating,
 }) => {
+  const deckLength = cardList[0];
   if (currentDeck.length >= 1) {
     return (
       <CardBody>
@@ -204,7 +206,7 @@ const Card = ({
               Hint
             </button>
             </div> */}
-            <div> {currentDeck}</div>
+            <div> {currentDeck} {currentCard.id} / {deckLength.cards.length}</div>
             <div>
               <button onClick={() => {
                 flipCard();
