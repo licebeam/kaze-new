@@ -5,7 +5,8 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const CardBody = styled.div`
   width: 100%;
@@ -205,8 +206,8 @@ const Card = ({
             addToUserDeck(currentCard, currentDeck, 'Easy');
           }}
           >
-            Easy
-        </button>
+            <FontAwesomeIcon icon="coffee" />
+          </button>
         </div>
 
       </CardBody>
