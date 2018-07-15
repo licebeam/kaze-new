@@ -17,16 +17,14 @@ const propTypes = {
 const Deck = styled.div`
 height: 100px; 
 width: 100%;
-background-color: red; 
+background-color: #4472C4; 
   &:hover {
-  background-color: blue;
+  background-color: #4472C4;
   }
 `
 const Container = styled.div`
-  margin: 0 auto; 
-  padding: 0;
   overflow-x: hidden;
-  background-color: #fff;
+  background-color: #4472C4;
   height: 80vh;
   font-family: 'Roboto', sans-serif;
 `

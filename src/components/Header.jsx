@@ -5,11 +5,12 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-
+import kute from 'kute.js'
 const HeaderBody = styled.div`
+  z-index: 10;
   width: 100%;
   height: 10vh;
-  background-color: #234e;
+  background-color: #3A3A3A;
   color: #fff;
   display: flex; 
   text-align: center; 
@@ -39,9 +40,6 @@ const Header = ({
       <Link to='/Profile'>
         <div>{userHandle}</div>
       </Link>
-
-
-
     </HeaderBody>
   )
 }

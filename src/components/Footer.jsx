@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const FooterBody = styled.div`
   width: 100%;
   height: 10vh;
-  background-color: black;
+  background-color: #4472C4;
 `
 
 const Footer = ({ }) => {

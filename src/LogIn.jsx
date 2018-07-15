@@ -16,12 +16,26 @@ const propTypes = {
   getDeck: PropTypes.func,
 }
 const Container = styled.div`
-  margin: 0 auto; 
-  padding: 0;
   overflow-x: hidden;
-  background-color: #fff;
+  background-color: #4472C4;
   height: 80vh;
   font-family: 'Roboto', sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  .top-bar{
+    margin: 0 auto;
+    background-color: #fff;
+    height: 60px;
+    width: 100%;
+    padding-bottom: 20px;
+  }
+  a{
+    color: #fff;
+    &:hover{
+      color: #EDAD1E;
+    }
+  }
 `
 class LogIn extends Component {
   render() {
@@ -32,14 +46,16 @@ class LogIn extends Component {
     } = this.props;
     return (
       <Container>
-        <h1>Please Log In</h1>
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+        <div className="top-bar" >
+          <h1>Log In</h1>
+        </div>
         <div>
-          <button>
-            <Link to='/Decks'>
-              Continue without logging in?
-            </Link>
-          </button>
+          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+        </div>
+        <div>
+          <Link to='/Decks'>
+            Continue without logging in?
+          </Link>
         </div>
       </Container >
     );
