@@ -7,8 +7,8 @@ import {
 } from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner, faThumbsUp, faThumbsDown, faBackward, faRedo } from "@fortawesome/free-solid-svg-icons"
-library.add(faSpinner, faThumbsUp, faThumbsDown, faBackward, faRedo);
+import { faSpinner, faThumbsUp, faThumbsDown, faArrowLeft, faRedo, faForward } from "@fortawesome/free-solid-svg-icons"
+library.add(faSpinner, faThumbsUp, faThumbsDown, faArrowLeft, faRedo, faForward);
 
 const CardBody = styled.div`
   width: 100%;
@@ -21,6 +21,10 @@ const CardBody = styled.div`
   button { 
     border: none;
     background: none;
+    &:focus {
+      border: none;
+      outline: none;
+    }
   }
   .card-center { 
     flex: 1;
@@ -107,7 +111,7 @@ const CardBody = styled.div`
     flex: .4;
     flex-direction: row;
     height: 60px;
-    color: #000;
+    color: #fff;
     background-color: #145674;
     width: 100%;
     div { 
@@ -151,7 +155,7 @@ const Card = ({
           <div>
             <Link to='/Decks'>
               <button>
-                <FontAwesomeIcon icon="backward" size="2x" />
+                <FontAwesomeIcon icon="arrow-left" size="2x" />
               </button>
             </Link>
           </div>
@@ -160,8 +164,8 @@ const Card = ({
               updateCard(currentCard.id);
             }}
             >
-              NEXT
-          </button>
+              <FontAwesomeIcon icon="forward" size="2x" />
+            </button>
             {/* <button onClick={() => {
               prevCard(currentCard.id);
             }}
