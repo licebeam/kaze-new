@@ -13,12 +13,19 @@ const HeaderBody = styled.div`
   background-color: #3A3A3A;
   color: #fff;
   display: flex; 
+  flex-direction: row;
   text-align: center; 
   font-family: 'Roboto', sans-serif;
+  .title {
+    align-content: center;
+    text-align: center;
+    flex: 1; 
+  }
   div {
     padding: 20px; 
     flex: 1;
     img { 
+      border: 4px solid #fff;
       height: 50px;
       width: 50px;
       border-radius: 50%;
@@ -32,14 +39,22 @@ const Header = ({
 }) => {
   return (
     <HeaderBody>
-      <h1>Kaze</h1>
+      <div className="title">
+        <h1>Kaze</h1>
+      </div>
+
       <div></div>
-      <Link to='/Profile'>
-        <div><img src={userPhoto} alt="" /></div>
-      </Link>
-      <Link to='/Profile'>
-        <div>{userHandle}</div>
-      </Link>
+      <div className="user-pic">
+        <Link to='/Profile'>
+          <div><img src={userPhoto} alt="" /></div>
+        </Link>
+      </div>
+      <div className="user-name">
+        <Link to='/Profile'>
+          <div>{userHandle}</div>
+        </Link>
+      </div>
+
     </HeaderBody>
   )
 }
