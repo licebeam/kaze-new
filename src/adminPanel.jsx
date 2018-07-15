@@ -17,14 +17,23 @@ flex-direction: column;
       border-radius: 50%;
     }
 `
-const AdminPanel = ({
-  userHandle,
-}) => {
-  return (
-    <AdminContainer>
-      <div>ADD CARDS</div>
-    </AdminContainer>
-  )
+class AdminPanel extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <AdminContainer>
+        <form>
+          <label>
+            Name:
+      <input type="text" name="name" />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </AdminContainer >
+    )
+  }
 }
 
 export default AdminPanel

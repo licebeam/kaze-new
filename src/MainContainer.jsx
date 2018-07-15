@@ -247,6 +247,27 @@ class MainContainer extends Component {
     this.setState({ cardsMemorized: this.state.cardsMemorized + 1 })
   }
 
+  addCardToDb = (group, kana, id, flip, hint, sub, furigana) => {
+    db.collection('cards').doc(group)
+      .add(() => {
+        card: [{
+          'kana': kana,
+          'id': id,
+          'flip': flip,
+          'hint': hint,
+          'sub': sub,
+          'furigana': furigana,
+        }]
+        console.log('add a card');
+      })
+      .then(() => {
+        console.log('test')
+      })
+      .catch(() => {
+        console.log('error adding card')
+      })
+  }
+
   render() {
 
     return (
