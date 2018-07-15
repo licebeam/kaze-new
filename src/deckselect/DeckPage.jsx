@@ -77,7 +77,7 @@ class DeckPage extends Component {
               }}>
                 <Link to='/Home'>
                   Select Deck
-              </Link>
+                </Link>
               </button>
             </Deck>
           )

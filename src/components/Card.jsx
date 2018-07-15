@@ -200,7 +200,7 @@ const Card = ({
           Back
             </Link>
       </button>
-      <div>Please Choose a Deck</div>
+      <div>Prolly Loading</div>
     </div>
   )
 }
