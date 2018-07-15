@@ -156,12 +156,14 @@ class MainContainer extends Component {
     const cards = this.state.cardList[0].cards;
     this.setState({ currentCard: cards[cards.length > curCard + 1 ? curCard + 1 : 0] })
     this.getRating(this.state.currentCard.id);
+    this.state.cardsMemorized <= 0 ? this.setState({ cardsMemorized: 0 }) : null;
   }
   prevCard = (cardId) => {
     const curCard = cardId - 1;
     const cards = this.state.cardList[0].cards;
     this.setState({ currentCard: cards[curCard >= 1 ? curCard - 1 : cards.length - 1] })
     this.getRating(this.state.currentCard.id);
+    this.state.cardsMemorized <= 0 ? this.setState({ cardsMemorized: 0 }) : null;
   }
 
   flipCard = () => {
@@ -196,13 +198,13 @@ class MainContainer extends Component {
       : cardCheck && cardCheck.card ? (
         console.log('delete and re-add card'),
         userDeck.splice(cardIndex, 1),
-        rating === 'Easy' ? this.memorizeCard() : console.log('not memorized'),
+        rating === 'Easy' ? this.memorizeCard() : this.setState({ cardsMemorized: this.state.cardsMemorized - 1 }),
         this.setState({ userDeck: [...userDeck, { card, deckname, rating }] }))
         : console.log('adding card');
 
     cardCheck && cardCheck.card
       ? console.log('card exists in deck')
-      : (rating === 'Easy' ? this.memorizeCard() : console.log('not memorized'),
+      : (rating === 'Easy' ? this.memorizeCard() : this.setState({ cardsMemorized: this.state.cardsMemorized - 1 }),
         this.setState({ userDeck: [...userDeck, { card, deckname, rating }] }))
 
 
