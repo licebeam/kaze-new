@@ -9,8 +9,20 @@ import {
 
 const ProfileContainer = styled.div`
 height: 80vh;
+display: flex;
+flex-direction: column; 
+ img { 
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+    }
 `
-const UserProfile = () => {
+const UserProfile = ({
+  userHandle,
+  userPhoto,
+  userEmail,
+  cardsMemorized,
+}) => {
   return (
     <ProfileContainer>
       <button>
@@ -18,7 +30,18 @@ const UserProfile = () => {
           Back
             </Link>
       </button>
-      USER PROFILEs
+      <div>
+        <img src={userPhoto} alt="" />
+      </div>
+      <div>
+        UserName: {userHandle}
+      </div>
+      <div>
+        Registered Email: {userEmail}
+      </div>
+      <div>
+        Cards Memorized: {cardsMemorized}
+      </div>
 
     </ProfileContainer>
   )

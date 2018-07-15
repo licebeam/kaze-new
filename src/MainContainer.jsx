@@ -66,6 +66,7 @@ class MainContainer extends Component {
       userProviderData: '',
       userDeck: [],
       currentRating: null,
+      cardsMemorized: 0,
     }
   }
   componentDidMount() {
@@ -195,12 +196,14 @@ class MainContainer extends Component {
       : cardCheck && cardCheck.card ? (
         console.log('delete and re-add card'),
         userDeck.splice(cardIndex, 1),
+        rating === 'Easy' ? this.memorizeCard() : console.log('not memorized'),
         this.setState({ userDeck: [...userDeck, { card, deckname, rating }] }))
         : console.log('adding card');
 
     cardCheck && cardCheck.card
       ? console.log('card exists in deck')
-      : this.setState({ userDeck: [...userDeck, { card, deckname, rating }] })
+      : (rating === 'Easy' ? this.memorizeCard() : console.log('not memorized'),
+        this.setState({ userDeck: [...userDeck, { card, deckname, rating }] }))
 
 
     //add and update user card database
@@ -234,6 +237,10 @@ class MainContainer extends Component {
       });
   }
 
+  memorizeCard = () => {
+    this.setState({ cardsMemorized: this.state.cardsMemorized + 1 })
+  }
+
   render() {
 
     return (
@@ -259,10 +266,10 @@ class MainContainer extends Component {
           />
           <Route exact path="/Profile" render={() =>
             <UserProfile
-              deckList={this.state.deckList}
-              currentDeck={this.state.currentDeck}
-              getCards={this.getCards}
-              getDecks={this.getDecks}
+              userEmail={this.state.userEmail}
+              userHandle={this.state.userHandle}
+              userPhoto={this.state.userPhoto}
+              cardsMemorized={this.state.cardsMemorized}
             />}
           />
           <Route exact path="/Home" render={() =>

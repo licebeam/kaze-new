@@ -35,8 +35,12 @@ const Header = ({
       <div></div>
       <Link to='/Profile'>
         <div><img src={userPhoto} alt="" /></div>
+      </Link>
+      <Link to='/Profile'>
         <div>{userHandle}</div>
       </Link>
+
+
 
     </HeaderBody>
   )
