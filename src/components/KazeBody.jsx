@@ -55,7 +55,7 @@ const KazeBody = ({
           currentRating={currentRating}
         />
       </div>
-      <div className='user-input'>User Input? and perhaps a progress bar for the current card set?</div>
+      <div className='user-input'></div>
     </MainBody>
   )
 }

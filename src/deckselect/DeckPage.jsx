@@ -20,8 +20,9 @@ width: 100%;
 color: #000;
 text-align: left;
 background-color: #EDAD1E; 
+margin-bottom: 10px;
   &:hover {
-  background-color: #21A4D3;
+  background-color: #EDAD1E;
   }
 h2 {
   padding-left: 20px;

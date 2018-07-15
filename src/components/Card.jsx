@@ -15,76 +15,95 @@ const CardBody = styled.div`
   align-items: center;
   display: flex; 
   flex-direction: column; 
+  button { 
+    border: none;
+    background: none;
+  }
   .card-center { 
     flex: 1;
-    margin-top: 20px;
     color: #000;
-    border-radius: 30px;
-    width: 90%;
+    /* border-radius: 30px; */
+    width: 100%;
     height: 300px;
     text-align: center; 
-    background-color: #eee;
+    background-color: #fff;
     box-shadow: 0px 8px 26px -12px rgba(0,0,0,0.7);
     text-align: center; 
     display: flex; 
     flex-direction: column; 
     .card-text { 
       flex: 1;
-      font-size: 2rem; 
+      font-size: 2.3rem; 
       align-self: auto;
       vertical-align: middle; 
       justify-content: center; 
     }
     .sub-card-text { 
       flex: 1;
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
     .button-container-center { 
       flex: 1;
       display: flex;
       flex-direction: row;
       align-self: auto;
-      vertical-align: middle; 
-      justify-content: center; 
+      height: 100%
       div { 
         flex: 1;
+        text-align: center;
+        align-self: center;
       }
-      button {
-        margin: 20px 10px 0px 10px;
-        border-radius: 50%;
-        border: 1px solid #000;
-        width: 50px; 
-        height: 50px; 
-        transition: all 1s; 
-        &:hover{
-        background-color: red;
-        }
-      }
-    }
-  }
-  .button-container-bottom { 
-    flex: .6;
-    display: flex;
-    flex-direction: row;
-    div { 
-        flex: 1;
-      }
-    button {
-      margin: 20px 10px 0px 10px
-      border-radius: 30px;
-      border: 1px solid #000;
-      width: 60px; 
-      height: 30px; 
+     button {
+      height: 100%; 
+      width: 100%;
+      font-size: 1rem;
       transition: all 1s; 
+      border: none;
+      background-color: #fff;
       &:hover{
         background-color: red;
       }
     }
+    }
   }
-  .button-container-top { 
-    flex: .3;
+  .button-container-bottom { 
+    flex: .4;
     display: flex;
     flex-direction: row;
+    width: 100%;
+    div { 
+        flex: 1;
+      }
+    .easy-button {
+      height: 100%; 
+      width: 100%;
+      font-size: 1.5rem;
+      transition: all 1s; 
+      border: none;
+      background-color: #EDAD1E;
+      color: #fff;
+      &:hover{
+        background-color: #048CAC;
+      }
+    }
+     .hard-button {
+      height: 100%; 
+      width: 100%;
+      font-size: 1.5rem;
+      transition: all 1s; 
+      border: none;
+      background-color: #F53240;
+      color: #fff;
+      &:hover{
+        background-color: #048CAC;
+      }
+    }
+  }
+  .button-container-top { 
+    display: flex;
+    flex: .4;
+    flex-direction: row;
+    height: 60px;
     color: #000;
     background-color: #145674;
     width: 100%;
@@ -92,15 +111,14 @@ const CardBody = styled.div`
         flex: 1;
       }
     button {
-      margin: 20px 10px 0px 10px
-      border-radius: 30px;
-      border: 1px solid #000;
-      width: 40px; 
-      height: 20px; 
-      font-size: .6rem;
+      height: 100%; 
+      width: 100%;
+      font-size: 1rem;
       transition: all 1s; 
+      border: none;
+      background-color: #145674;
       &:hover{
-        background-color: red;
+        background-color: #048CAC;
       }
     }
   }
@@ -128,11 +146,11 @@ const Card = ({
       <CardBody>
         <div className='button-container-top'>
           <div>
-            <button>
-              <Link to='/Decks'>
+            <Link to='/Decks'>
+              <button>
                 Back
-            </Link>
             </button>
+            </Link>
           </div>
           <div>
             <button onClick={() => {
@@ -141,27 +159,27 @@ const Card = ({
             >
               NEXT
           </button>
-            <button onClick={() => {
+            {/* <button onClick={() => {
               prevCard(currentCard.id);
             }}
             >
               PREV
-          </button>
+          </button> */}
           </div>
-          <div>Time Spent on card</div>
+          {/* <div>Time Spent on card</div> */}
         </div>
         <div className='card-center'>
           <div className='button-container-center'>
             <div>
               {currentRating}
             </div>
-            <div>
-              {/* <button onClick={() => {
+            {/* <div>
+              <button onClick={() => {
               showHint();
             }}>
               Hint
-            </button> */}
-            </div>
+            </button>
+            </div> */}
             <div> {currentDeck}</div>
             <div>
               <button onClick={() => {
@@ -177,13 +195,13 @@ const Card = ({
           <div>{hintShown === true ? 'HINT: ' + currentCard.hint : ''} </div>
         </div>
         <div className='button-container-bottom'>
-          <button onClick={() => {
+          <button className='hard-button' onClick={() => {
             addToUserDeck(currentCard, currentDeck, 'Hard');
           }}
           >
             Difficult
         </button>
-          <button onClick={() => {
+          <button className='easy-button' onClick={() => {
             addToUserDeck(currentCard, currentDeck, 'Easy');
           }}
           >

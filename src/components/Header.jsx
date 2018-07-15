@@ -36,8 +36,8 @@ const HeaderBody = styled.div`
     flex: 1;
     img { 
       border: 4px solid #fff;
-      height: 50px;
-      width: 50px;
+      height: 40px;
+      width: 40px;
       border-radius: 50%;
     }
   }
