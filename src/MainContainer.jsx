@@ -63,7 +63,7 @@ class MainContainer extends Component {
       userPhoto: '',
       userUid: '',
       userProviderData: '',
-
+      userDeck: [],
     }
   }
   componentDidMount() {
@@ -151,6 +151,23 @@ class MainContainer extends Component {
       : this.setState({ hintShown: false })
   }
 
+  addToUserDeck = (card, deckname, rating) => {
+    //check user name
+    const { userDeck } = this.state;
+    //create deck unless one exists already 
+    //add card to deck with rating 
+
+    console.log('userEmail ', this.state.userEmail);
+    console.log('card ', card);
+    console.log('deckname ', deckname);
+    console.log('rating ', rating);
+    const cardCheck = userDeck.find(c => {
+      return c.card === card;
+    })
+    cardCheck ? console.log('card exists in deck') : this.setState({ userDeck: [...userDeck, { card, deckname, rating }] })
+    console.log('userDeck ', userDeck);
+  }
+
   render() {
 
     return (
@@ -185,6 +202,7 @@ class MainContainer extends Component {
               flipCard={this.flipCard}
               hintShown={this.state.hintShown}
               showHint={this.showHint}
+              addToUserDeck={this.addToUserDeck}
             />}
           />
           <Footer />

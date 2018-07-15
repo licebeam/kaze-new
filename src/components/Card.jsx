@@ -95,8 +95,9 @@ const CardBody = styled.div`
       margin: 20px 10px 0px 10px
       border-radius: 30px;
       border: 1px solid #000;
-      width: 60px; 
-      height: 30px; 
+      width: 40px; 
+      height: 20px; 
+      font-size: .6rem;
       transition: all 1s; 
       &:hover{
         background-color: red;
@@ -117,6 +118,7 @@ const Card = ({
   prevCard,
   hintShown,
   showHint,
+  addToUserDeck,
 }) => {
   if (currentDeck.length >= 1) {
     return (
@@ -130,17 +132,17 @@ const Card = ({
             </button>
           </div>
           <div>
-            {/* <button onClick={() => {
-            updateCard(currentCard.id);
-          }}
-          >
-            NEXT CARD
-          </button> */}
+            <button onClick={() => {
+              updateCard(currentCard.id);
+            }}
+            >
+              NEXT
+          </button>
             <button onClick={() => {
               prevCard(currentCard.id);
             }}
             >
-              PREV CARD
+              PREV
           </button>
           </div>
           <div>Time Spent on card</div>
@@ -171,12 +173,14 @@ const Card = ({
         <div className='button-container-bottom'>
           <button onClick={() => {
             updateCard(currentCard.id);
+            addToUserDeck(currentCard, currentDeck, 'Hard');
           }}
           >
             Difficult
         </button>
           <button onClick={() => {
             updateCard(currentCard.id);
+            addToUserDeck(currentCard, currentDeck, 'Easy');
           }}
           >
             Easy
