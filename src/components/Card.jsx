@@ -10,6 +10,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner, faThumbsUp, faThumbsDown, faArrowLeft, faRedo, faForward } from "@fortawesome/free-solid-svg-icons"
 library.add(faSpinner, faThumbsUp, faThumbsDown, faArrowLeft, faRedo, faForward);
 
+const Spinner = styled.div`
+  margin-top: 50%;
+  color: #fff; 
+  align-items: center; 
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`
 const CardBody = styled.div`
   width: 100%;
   color: #fff;
@@ -18,6 +29,12 @@ const CardBody = styled.div`
   align-items: center;
   display: flex; 
   flex-direction: column; 
+  .spinner {
+    text-align: center;
+    align-items: center; 
+    align-self: center; 
+    vertical-align: middle;
+  }
   button { 
     border: none;
     background: none;
@@ -219,14 +236,14 @@ const Card = ({
       </CardBody>
     )
   } else return (
-    <div>
+    <Spinner>
       <button>
         <Link to='/Decks'>
           Back
             </Link>
       </button>
       <FontAwesomeIcon icon="spinner" pulse size="6x" />
-    </div>
+    </Spinner>
   )
 }
 
