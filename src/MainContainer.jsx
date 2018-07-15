@@ -152,20 +152,19 @@ class MainContainer extends Component {
   }
 
   addToUserDeck = (card, deckname, rating) => {
-    //check user name
     const { userDeck } = this.state;
-    //create deck unless one exists already 
-    //add card to deck with rating 
-
-    console.log('userEmail ', this.state.userEmail);
-    console.log('card ', card);
-    console.log('deckname ', deckname);
-    console.log('rating ', rating);
     const cardCheck = userDeck.find(c => {
       return c.card === card;
     })
-    cardCheck ? console.log('card exists in deck') : this.setState({ userDeck: [...userDeck, { card, deckname, rating }] })
-    console.log('userDeck ', userDeck);
+    const cardIndex = userDeck.indexOf(cardCheck);
+    cardCheck && cardCheck.rating === rating
+      ? console.log('rating is the same')
+      : cardCheck && cardCheck.card ? userDeck.splice(cardIndex, 1) : console.log('adding card');
+    cardCheck && cardCheck.rating === rating
+      ? console.log('card exists in deck')
+      : this.setState({ userDeck: [...userDeck, { card, deckname, rating }] })
+    //add and update user card database
+
   }
 
   render() {
