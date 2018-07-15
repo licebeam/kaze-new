@@ -14,6 +14,7 @@ import firebase from 'firebase';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import UserProfile from './userprofile/UserProfile'
+import AdminPanel from './adminPanel';
 
 var config = {
   apiKey: "AIzaSyC9kgL1DXJ-rjmVq7J6ghqofptEFajpb_0",
@@ -254,6 +255,11 @@ class MainContainer extends Component {
           <Header
             userHandle={this.state.userHandle}
             userPhoto={this.state.userPhoto}
+          />
+          <Route exact path="/Admin" render={() =>
+            <AdminPanel
+
+            />}
           />
           <Route exact path="/" render={() =>
             <LogIn
