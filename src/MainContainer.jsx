@@ -64,6 +64,7 @@ class MainContainer extends Component {
       userUid: '',
       userProviderData: '',
       userDeck: [],
+      currentRating: null,
     }
   }
   componentDidMount() {
@@ -136,11 +137,12 @@ class MainContainer extends Component {
         querySnapshot.forEach((doc) => {
           cardIterator.push({ cards: doc.data().card }) //append by kana 
           cardIterator !== [] ? this.setState({ cardList: cardIterator }) : null;
-          console.log(this.state.cardList);
+          // console.log(this.state.cardList);
           this.setState({ currentDeck: deck_name });
           this.setState({ currentCard: this.state.cardList[0].cards[0] })
-          console.log(this.state.currentCard)
-          console.log("user deck ", this.state.userDeck)
+          this.getRating(this.state.currentCard.id);
+          // console.log(this.state.currentCard)
+          // console.log("user deck ", this.state.userDeck)
         });
       })
       .catch(function (error) {
@@ -151,11 +153,13 @@ class MainContainer extends Component {
     const curCard = cardId - 1;
     const cards = this.state.cardList[0].cards;
     this.setState({ currentCard: cards[cards.length > curCard + 1 ? curCard + 1 : 0] })
+    this.getRating(this.state.currentCard.id);
   }
   prevCard = (cardId) => {
     const curCard = cardId - 1;
     const cards = this.state.cardList[0].cards;
     this.setState({ currentCard: cards[curCard >= 1 ? curCard - 1 : cards.length - 1] })
+    this.getRating(this.state.currentCard.id);
   }
 
   flipCard = () => {
@@ -171,28 +175,43 @@ class MainContainer extends Component {
       ? this.setState({ hintShown: true })
       : this.setState({ hintShown: false })
   }
+  getRating = (cardId) => {
+    const { userDeck } = this.state
+    const curCard = userDeck.find(c => c.card.id === cardId)
+    this.setState({ currentRating: curCard && curCard.rating ? curCard.rating : 'No Rating' })
+  }
 
   addToUserDeck = (card, deckname, rating) => {
     const { userDeck } = this.state;
-    console.log(card.id)
+    // console.log(card.id)
     const cardCheck = userDeck.find(c => {
       return c.card.id === card.id;
     })
     const cardIndex = userDeck.indexOf(cardCheck);
+
     cardCheck && cardCheck.rating === rating
       ? console.log('rating is the same')
-      : cardCheck && cardCheck.card ? userDeck.splice(cardIndex, 1) : console.log('adding card');
-    cardCheck && cardCheck.rating === rating
+      : cardCheck && cardCheck.card ? (
+        console.log('delete and re-add card'),
+        userDeck.splice(cardIndex, 1),
+        this.setState({ userDeck: [...userDeck, { card, deckname, rating }] }))
+        : console.log('adding card');
+
+    cardCheck && cardCheck.card
       ? console.log('card exists in deck')
       : this.setState({ userDeck: [...userDeck, { card, deckname, rating }] })
+
+
     //add and update user card database
     db.collection('users').doc(this.state.userEmail)
       .update({
         userDecks: userDeck
       })
       .then(() => {
-        console.log(userDeck)
+        // console.log(userDeck)
         console.log('updated userDeck')
+        this.updateCard(this.state.currentCard.id);
+        this.getRating(this.state.currentCard.id);
       })
       .catch((error) => {
         console.log('there was an error updating user deck')
@@ -249,6 +268,9 @@ class MainContainer extends Component {
               hintShown={this.state.hintShown}
               showHint={this.showHint}
               addToUserDeck={this.addToUserDeck}
+              userDeck={this.state.userDeck}
+              getRating={this.getRating}
+              currentRating={this.state.currentRating}
             />}
           />
           <Footer />

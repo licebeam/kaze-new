@@ -119,6 +119,9 @@ const Card = ({
   hintShown,
   showHint,
   addToUserDeck,
+  userDeck,
+  getRating,
+  currentRating,
 }) => {
   if (currentDeck.length >= 1) {
     return (
@@ -150,6 +153,9 @@ const Card = ({
         <div className='card-center'>
           <div className='button-container-center'>
             <div>
+              {currentRating}
+            </div>
+            <div>
               {/* <button onClick={() => {
               showHint();
             }}>
@@ -172,14 +178,12 @@ const Card = ({
         </div>
         <div className='button-container-bottom'>
           <button onClick={() => {
-            updateCard(currentCard.id);
             addToUserDeck(currentCard, currentDeck, 'Hard');
           }}
           >
             Difficult
         </button>
           <button onClick={() => {
-            updateCard(currentCard.id);
             addToUserDeck(currentCard, currentDeck, 'Easy');
           }}
           >

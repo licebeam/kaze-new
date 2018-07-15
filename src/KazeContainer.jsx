@@ -14,6 +14,9 @@ const propTypes = {
   flipCard: PropTypes.func,
   prevCard: PropTypes.func,
   addToUserDeck: PropTypes.func,
+  userDeck: PropTypes.array,
+  getRating: PropTypes.func,
+  currentRating: PropTypes.string,
 };
 
 const Container = styled.div`
@@ -38,6 +41,9 @@ class KazeContainer extends Component {
       hintShown,
       showHint,
       addToUserDeck,
+      userDeck,
+      getRating,
+      currentRating
     } = this.props;
     return (
       <Container>
@@ -52,6 +58,9 @@ class KazeContainer extends Component {
           hintShown={hintShown}
           showHint={showHint}
           addToUserDeck={addToUserDeck}
+          userDeck={userDeck}
+          getRating={getRating}
+          currentRating={currentRating}
         />
       </Container>
     );

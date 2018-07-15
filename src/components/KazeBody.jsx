@@ -32,6 +32,9 @@ const KazeBody = ({
   hintShown,
   showHint,
   addToUserDeck,
+  userDeck,
+  getRating,
+  currentRating,
 }) => {
   return (
     <MainBody>
@@ -47,6 +50,9 @@ const KazeBody = ({
           hintShown={hintShown}
           showHint={showHint}
           addToUserDeck={addToUserDeck}
+          userDeck={userDeck}
+          getRating={getRating}
+          currentRating={currentRating}
         />
       </div>
       <div className='user-input'>User Input? and perhaps a progress bar for the current card set?</div>
