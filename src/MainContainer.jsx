@@ -248,25 +248,41 @@ class MainContainer extends Component {
   }
 
   addCardToDb = (group, kana, id, flip, hint, sub, furigana, groupId) => {
-    db.collection('cards').doc(group)
-      .set({
-        group: group,
-        id: groupId,
-        card: [{
-          'kana': kana,
-          'id': id,
-          'flip': flip,
-          'hint': hint,
-          'sub': sub,
-          'furigana': furigana,
-        }]
+    let currentCardArray = [];
+    console.log('group', group)
+    db.collection('cards').where('group', '==', group)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log("doc data", doc.data().card)
+          currentCardArray = doc.data().card
+          currentCardArray.push({
+            'kana': kana,
+            'id': id,
+            'flip': flip,
+            'hint': hint,
+            'sub': sub,
+            'furigana': furigana,
+          })
+        });
       })
       .then(() => {
-        console.log('test')
+        db.collection('cards').doc(group)
+          .set({
+            group: group,
+            id: groupId,
+            card: currentCardArray
+          })
+          .then(() => {
+            console.log('Adding Card to DB')
+          })
+          .catch(() => {
+            console.log('error adding card')
+          })
       })
-      .catch(() => {
-        console.log('error adding card')
-      })
+      .catch(function (error) {
+        console.log("Error getting fetching cards from db: ", error);
+      });
   }
 
   render() {

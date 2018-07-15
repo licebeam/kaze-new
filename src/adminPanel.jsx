@@ -27,8 +27,7 @@ align-self: center;
    width: 300px;
  }
  button {
-   padding: 10px;
-   height: 40px;
+   height: 20px;
    width: 100px;
  }
 `
@@ -58,6 +57,11 @@ class AdminPanel extends React.Component {
   render({ addCardToDb } = this.props) {
     return (
       <AdminContainer>
+        <button>
+          <Link to='/Decks'>
+            Back
+          </Link>
+        </button>
         group:
         <input type="text" name="group"
           defaultValue={'JLPT N5 Vocab'}
