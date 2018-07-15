@@ -76,6 +76,25 @@ class MainContainer extends Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in.
+        db.collection('users').doc(user.email)
+          .update({ userEmail: user.email })
+          .then(() => {
+            console.log('updating user')
+          })
+          .catch((error) => {
+            console.log('error, user does not exist')
+            db.collection('users').doc(user.email)
+              .set({
+                userEmail: user.email,
+                userDecks: [],
+              })
+              .then(() => {
+                console.log('added user to db and updating')
+              })
+              .catch((error) => {
+                console.log('error adding user')
+              })
+          })
         console.log('user is signed in')
         this.setState({ userHandle: user.displayName })
         this.setState({ userEmail: user.email })
@@ -164,7 +183,16 @@ class MainContainer extends Component {
       ? console.log('card exists in deck')
       : this.setState({ userDeck: [...userDeck, { card, deckname, rating }] })
     //add and update user card database
-
+    db.collection('users').doc(this.state.userEmail)
+      .update({
+        userDecks: userDeck
+      })
+      .then(() => {
+        console.log('updated user deck on db')
+      })
+      .catch((error) => {
+        console.log('there was an error updating user deck')
+      })
   }
 
   render() {
