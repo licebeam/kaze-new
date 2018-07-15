@@ -247,9 +247,11 @@ class MainContainer extends Component {
     this.setState({ cardsMemorized: this.state.cardsMemorized + 1 })
   }
 
-  addCardToDb = (group, kana, id, flip, hint, sub, furigana) => {
+  addCardToDb = (group, kana, id, flip, hint, sub, furigana, groupId) => {
     db.collection('cards').doc(group)
-      .add(() => {
+      .set({
+        group: group,
+        id: groupId,
         card: [{
           'kana': kana,
           'id': id,
@@ -258,7 +260,6 @@ class MainContainer extends Component {
           'sub': sub,
           'furigana': furigana,
         }]
-        console.log('add a card');
       })
       .then(() => {
         console.log('test')
@@ -279,7 +280,7 @@ class MainContainer extends Component {
           />
           <Route exact path="/Admin" render={() =>
             <AdminPanel
-
+              addCardToDb={this.addCardToDb}
             />}
           />
           <Route exact path="/" render={() =>
