@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner, faThumbsUp, faThumbsDown, faBackward, faRedo } from "@fortawesome/free-solid-svg-icons"
+library.add(faSpinner, faThumbsUp, faThumbsDown, faBackward, faRedo);
 
 const CardBody = styled.div`
   width: 100%;
@@ -62,7 +64,7 @@ const CardBody = styled.div`
       border: none;
       background-color: #fff;
       &:hover{
-        background-color: red;
+        /* background-color: red; */
       }
     }
     }
@@ -149,8 +151,8 @@ const Card = ({
           <div>
             <Link to='/Decks'>
               <button>
-                Back
-            </button>
+                <FontAwesomeIcon icon="backward" size="2x" />
+              </button>
             </Link>
           </div>
           <div>
@@ -187,8 +189,8 @@ const Card = ({
                 flipCard();
               }}
               >
-                Flip
-            </button>
+                <FontAwesomeIcon icon="redo" size="2x" />
+              </button>
             </div>
           </div>
           <div className='card-text'>{cardFlipped === 'back' ? currentCard.flip : currentCard.kana}</div>
@@ -200,13 +202,13 @@ const Card = ({
             addToUserDeck(currentCard, currentDeck, 'Hard');
           }}
           >
-            Difficult
-        </button>
+            <FontAwesomeIcon icon="thumbs-down" size="2x" />
+          </button>
           <button className='easy-button' onClick={() => {
             addToUserDeck(currentCard, currentDeck, 'Easy');
           }}
           >
-            <FontAwesomeIcon icon="coffee" />
+            <FontAwesomeIcon icon="thumbs-up" size="2x" />
           </button>
         </div>
 
@@ -219,7 +221,7 @@ const Card = ({
           Back
             </Link>
       </button>
-      <div>Prolly Loading</div>
+      <FontAwesomeIcon icon="spinner" pulse size="6x" />
     </div>
   )
 }
