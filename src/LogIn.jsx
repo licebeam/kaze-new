@@ -17,21 +17,26 @@ const propTypes = {
 }
 const Container = styled.div`
   overflow-x: hidden;
-  background-color: #4472C4;
+  background-color: #21A4D3;
   height: 80vh;
   font-family: 'Roboto', sans-serif;
   text-align: center;
   display: flex;
   flex-direction: column;
+  .auth-container {
+    background-color: #21A4D3;
+  }
   .top-bar{
     margin: 0 auto;
-    background-color: #fff;
+    background-color: #145674;
+    color: #fff;
     height: 60px;
     width: 100%;
     padding-bottom: 20px;
   }
   a{
     color: #fff;
+    text-decoration: none;
     &:hover{
       color: #EDAD1E;
     }
@@ -49,7 +54,7 @@ class LogIn extends Component {
         <div className="top-bar" >
           <h1>Log In</h1>
         </div>
-        <div>
+        <div className="auth-container">
           <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
         </div>
         <div>

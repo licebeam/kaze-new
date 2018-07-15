@@ -5,19 +5,19 @@ import Card from './Card';
 const MainBody = styled.div`
   width: 100%;
   height: 80vh;
-  background-color: #4472C4;
+  background-color: #21A4D3;
   display: flex;
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
   .card-container { 
     flex: 1; 
-    background-color: #4472C4;
+    background-color: #21A4D3;
     vertical-align: middle;
     display: flex;
   }
   .user-input { 
     flex: .4; 
-    background-color: #4472C4;
+    background-color: #21A4D3;
   }
 `
 

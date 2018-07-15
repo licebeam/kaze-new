@@ -17,16 +17,47 @@ const propTypes = {
 const Deck = styled.div`
 height: 100px; 
 width: 100%;
-background-color: #4472C4; 
+color: #000;
+text-align: left;
+background-color: #EDAD1E; 
   &:hover {
-  background-color: #4472C4;
+  background-color: #21A4D3;
   }
+h2 {
+  padding-left: 20px;
+}
 `
 const Container = styled.div`
   overflow-x: hidden;
-  background-color: #4472C4;
+  /* background-color: #21A4D3; */
+  background-color: #21A4D3;
   height: 80vh;
   font-family: 'Roboto', sans-serif;
+  display: flex; 
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  h1 {
+    color: #fff;
+  }
+  button { 
+    border: none;
+    background: none;
+  }
+   a{
+    text-decoration: none;
+    color: #fff;
+    &:hover{
+      color: #048CAC;
+    }
+  }
+   .top-bar{
+    margin: 0 auto;
+    background-color: #145674;
+    height: 60px;
+    width: 100%;
+    padding-bottom: 20px;
+  } 
 `
 class DeckPage extends Component {
 
@@ -34,7 +65,9 @@ class DeckPage extends Component {
     const { getCards, getDecks } = this.props;
     return (
       <Container>
-        <h1>Select Deck</h1>
+        <div className="top-bar" >
+          <h1>Select Deck</h1>
+        </div>
         {this.props.deckList.map(deck => {
           return (
             <Deck getCards={this.getCards}>
@@ -49,11 +82,11 @@ class DeckPage extends Component {
             </Deck>
           )
         })}
-        <button>
+        <div>
           <Link to='/'>
             Back To Login
           </Link>
-        </button>
+        </div>
       </Container>
     );
   }

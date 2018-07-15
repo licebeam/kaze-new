@@ -86,7 +86,7 @@ const CardBody = styled.div`
     display: flex;
     flex-direction: row;
     color: #000;
-    background-color: #4472C4;
+    background-color: #145674;
     width: 100%;
     div { 
         flex: 1;

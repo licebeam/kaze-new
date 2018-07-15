@@ -10,19 +10,29 @@ const HeaderBody = styled.div`
   z-index: 10;
   width: 100%;
   height: 10vh;
-  background-color: #3A3A3A;
+  background-color: #023855;
   color: #fff;
   display: flex; 
   flex-direction: row;
-  text-align: center; 
   font-family: 'Roboto', sans-serif;
   .title {
     align-content: center;
     text-align: center;
     flex: 1; 
   }
-  div {
-    padding: 20px; 
+  /* .user-name { 
+    align-content: center;
+    text-align: center;
+    justify-content: center; 
+    flex: 1; 
+  } */
+  .user-pic { 
+    align-content: center;
+    text-align: center;
+    align-self: center;
+    flex: 1; 
+  }
+  div { 
     flex: 1;
     img { 
       border: 4px solid #fff;
@@ -49,11 +59,11 @@ const Header = ({
           <div><img src={userPhoto} alt="" /></div>
         </Link>
       </div>
-      <div className="user-name">
+      {/* <div className="user-name">
         <Link to='/Profile'>
-          <div>{userHandle}</div>
+          <h6>{userHandle}</h6>
         </Link>
-      </div>
+      </div> */}
 
     </HeaderBody>
   )

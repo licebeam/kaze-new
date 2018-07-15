@@ -20,8 +20,6 @@ const propTypes = {
 };
 
 const Container = styled.div`
-  margin: 0 auto; 
-  padding: 0;
   overflow-x: hidden;
   background-color: #eee;
   height: 80vh;
