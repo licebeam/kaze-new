@@ -90,6 +90,7 @@ class MainContainer extends Component {
               .set({
                 userEmail: user.email,
                 userDecks: [],
+                userMemorized: 0,
               })
               .then(() => {
                 console.log('added user to db and updating')
@@ -211,7 +212,8 @@ class MainContainer extends Component {
     //add and update user card database
     db.collection('users').doc(this.state.userEmail)
       .update({
-        userDecks: userDeck
+        userDecks: userDeck,
+        userMemorized: this.state.cardsMemorized
       })
       .then(() => {
         // console.log(userDeck)
@@ -232,6 +234,7 @@ class MainContainer extends Component {
         querySnapshot.forEach((doc) => {
           // console.log("doc data", doc.data().userDecks)
           this.setState({ userDeck: doc.data().userDecks })
+          this.setState({ cardsMemorized: doc.data().userMemorized })
         });
       })
       .catch(function (error) {
