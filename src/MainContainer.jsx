@@ -118,6 +118,7 @@ class MainContainer extends Component {
           deckIterator.push({ name: doc.data().group })
           deckIterator !== [] ? this.setState({ deckList: deckIterator }) : null;
         });
+        this.getUserDecksFromDb();
       })
       .catch(function (error) {
         console.log("Error getting documents: ", error);
@@ -139,6 +140,7 @@ class MainContainer extends Component {
           this.setState({ currentDeck: deck_name });
           this.setState({ currentCard: this.state.cardList[0].cards[0] })
           console.log(this.state.currentCard)
+          console.log("user deck ", this.state.userDeck)
         });
       })
       .catch(function (error) {
@@ -172,8 +174,9 @@ class MainContainer extends Component {
 
   addToUserDeck = (card, deckname, rating) => {
     const { userDeck } = this.state;
+    console.log(card.id)
     const cardCheck = userDeck.find(c => {
-      return c.card === card;
+      return c.card.id === card.id;
     })
     const cardIndex = userDeck.indexOf(cardCheck);
     cardCheck && cardCheck.rating === rating
@@ -188,11 +191,27 @@ class MainContainer extends Component {
         userDecks: userDeck
       })
       .then(() => {
-        console.log('updated user deck on db')
+        console.log(userDeck)
+        console.log('updated userDeck')
       })
       .catch((error) => {
         console.log('there was an error updating user deck')
       })
+  }
+
+  getUserDecksFromDb = () => {
+    const { userDeck } = this.state;
+    db.collection("users").where('userEmail', '==', this.state.userEmail)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // console.log("doc data", doc.data().userDecks)
+          this.setState({ userDeck: doc.data().userDecks })
+        });
+      })
+      .catch(function (error) {
+        console.log("Error getting userDecks: ", error);
+      });
   }
 
   render() {
