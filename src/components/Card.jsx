@@ -147,7 +147,18 @@ const CardBody = styled.div`
       }
     }
   }
-  
+`
+const Timer = styled.div`
+  background-color: #145674;
+  height: 100px;
+  width: 100%;
+  flex: .2
+`
+const CardHolder = styled.div`
+  display: flex; 
+  flex-direction: column;
+  height: 100%; 
+  width: 100%;
 `
 
 const Card = ({
@@ -169,73 +180,76 @@ const Card = ({
   const deckLength = cardList[0];
   if (currentDeck.length >= 1) {
     return (
-      <CardBody>
-        <div className='button-container-top'>
-          <div>
-            <Link to='/Decks'>
-              <button>
-                <FontAwesomeIcon icon="arrow-left" size="2x" />
+      <CardHolder>
+        <CardBody>
+          <div className='button-container-top'>
+            <div>
+              <Link to='/Decks'>
+                <button>
+                  <FontAwesomeIcon icon="arrow-left" size="2x" />
+                </button>
+              </Link>
+            </div>
+            <div>
+              <button onClick={() => {
+                updateCard(currentCard.id);
+              }}
+              >
+                <FontAwesomeIcon icon="forward" size="2x" />
               </button>
-            </Link>
-          </div>
-          <div>
-            <button onClick={() => {
-              updateCard(currentCard.id);
-            }}
-            >
-              <FontAwesomeIcon icon="forward" size="2x" />
-            </button>
-            {/* <button onClick={() => {
+              {/* <button onClick={() => {
               prevCard(currentCard.id);
             }}
             >
               PREV
           </button> */}
-          </div>
-          {/* <div>Time Spent on card</div> */}
-        </div>
-        <div className='card-center'>
-          <div className='button-container-center'>
-            <div>
-              {currentRating}
             </div>
-            {/* <div>
+            {/* <div>Time Spent on card</div> */}
+          </div>
+          <div className='card-center'>
+            <div className='button-container-center'>
+              <div>
+                {currentRating}
+              </div>
+              {/* <div>
               <button onClick={() => {
               showHint();
             }}>
               Hint
             </button>
             </div> */}
-            <div> {currentDeck} {currentCard.id} / {deckLength.cards.length}</div>
-            <div>
-              <button onClick={() => {
-                flipCard();
-              }}
-              >
-                <FontAwesomeIcon icon="redo" size="2x" />
-              </button>
+              <div> {currentDeck} {currentCard.id} / {deckLength.cards.length}</div>
+              <div>
+                <button onClick={() => {
+                  flipCard();
+                }}
+                >
+                  <FontAwesomeIcon icon="redo" size="2x" />
+                </button>
+              </div>
             </div>
+            <div className='card-text'>{cardFlipped === 'back' ? currentCard.flip : currentCard.kana}</div>
+            <div className='sub-card-text'>{cardFlipped !== 'back' ? currentCard.sub : ''}</div>
+            <div>{hintShown === true ? 'HINT: ' + currentCard.hint : ''} </div>
           </div>
-          <div className='card-text'>{cardFlipped === 'back' ? currentCard.flip : currentCard.kana}</div>
-          <div className='sub-card-text'>{cardFlipped === 'back' ? currentCard.sub : ''}</div>
-          <div>{hintShown === true ? 'HINT: ' + currentCard.hint : ''} </div>
-        </div>
-        <div className='button-container-bottom'>
-          <button className='hard-button' onClick={() => {
-            addToUserDeck(currentCard, currentDeck, 'Hard');
-          }}
-          >
-            <FontAwesomeIcon icon="thumbs-down" size="2x" />
-          </button>
-          <button className='easy-button' onClick={() => {
-            addToUserDeck(currentCard, currentDeck, 'Easy');
-          }}
-          >
-            <FontAwesomeIcon icon="thumbs-up" size="2x" />
-          </button>
-        </div>
+          <div className='button-container-bottom'>
+            <button className='hard-button' onClick={() => {
+              addToUserDeck(currentCard, currentDeck, 'Hard');
+            }}
+            >
+              <FontAwesomeIcon icon="thumbs-down" size="2x" />
+            </button>
+            <button className='easy-button' onClick={() => {
+              addToUserDeck(currentCard, currentDeck, 'Easy');
+            }}
+            >
+              <FontAwesomeIcon icon="thumbs-up" size="2x" />
+            </button>
+          </div>
 
-      </CardBody>
+        </CardBody>
+        <Timer />
+      </CardHolder >
     )
   } else return (
     <Spinner>
