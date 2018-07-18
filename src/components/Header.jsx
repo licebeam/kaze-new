@@ -15,6 +15,13 @@ const HeaderBody = styled.div`
   display: flex; 
   flex-direction: row;
   font-family: 'Roboto', sans-serif;
+   a{
+    text-decoration: none;
+    color: #fff;
+    &:hover {
+      color: #F53240;
+    }
+   }
   .title {
     align-content: center;
     text-align: center;
@@ -50,7 +57,9 @@ const Header = ({
   return (
     <HeaderBody>
       <div className="title">
-        <h1>Kaze</h1>
+        <Link to='/'>
+          <h1>Kaze</h1>
+        </Link>
       </div>
 
       <div></div>

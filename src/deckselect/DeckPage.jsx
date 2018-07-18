@@ -7,6 +7,10 @@ import {
   Link
 } from 'react-router-dom'
 import Header from '../components/Header';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock, faChevronRight, faSort } from "@fortawesome/free-solid-svg-icons"
+library.add(faClock, faChevronRight, faSort);
 
 const propTypes = {
   deckList: PropTypes.array,
@@ -15,6 +19,12 @@ const propTypes = {
 };
 
 const Deck = styled.div`
+display: flex; 
+text-align: center;
+align-items: center; 
+align-self: center; 
+vertical-align: middle;
+flex-direction: row;
 height: 100px; 
 width: 100%;
 color: #000;
@@ -25,7 +35,22 @@ margin-bottom: 10px;
   background-color: #EDAD1E;
   }
 h2 {
-  padding-left: 20px;
+  flex: 1;
+  font-size: 1.2rem;
+  padding-left: 10px;
+}
+.select-deck{
+  height: 100%;
+  background-color: #F53240; 
+  flex: 1;
+}
+.timer-button, .sort-button {
+  flex: 1;
+  height: 100px;
+  width: 100px;
+  background-color: #F53240; 
+  color: #fff;
+  text-align: center;
 }
 `
 const Container = styled.div`
@@ -73,21 +98,27 @@ class DeckPage extends Component {
           return (
             <Deck getCards={this.getCards}>
               <h2 key='deckName'>{deck.name}</h2>
-              <button onClick={() => {
+              <button className="sort-button">
+                <FontAwesomeIcon icon="sort" size="4x" />
+              </button>
+              <button className="timer-button">
+                <FontAwesomeIcon icon="clock" size="4x" />
+              </button>
+              <button className='select-deck' onClick={() => {
                 getCards(deck.name);
               }}>
                 <Link to='/Home'>
-                  Select Deck
+                  <FontAwesomeIcon icon="chevron-right" size="4x" />
                 </Link>
               </button>
             </Deck>
           )
         })}
-        <div>
+        {/* <div>
           <Link to='/'>
             Back To Login
           </Link>
-        </div>
+        </div> */}
       </Container>
     );
   }

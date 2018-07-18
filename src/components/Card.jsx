@@ -239,11 +239,11 @@ const Card = ({
     )
   } else return (
     <Spinner>
-      <button>
+      {/* <button>
         <Link to='/Decks'>
           Back
             </Link>
-      </button>
+      </button> */}
       <FontAwesomeIcon icon="spinner" pulse size="6x" />
     </Spinner>
   )
