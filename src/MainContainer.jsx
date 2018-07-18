@@ -59,6 +59,7 @@ class MainContainer extends Component {
       currentCard: [],
       cardFlipped: 'front',
       hintShown: false,
+      cardTimer: 0,
       //user state
       userHandle: '',
       userEmail: '',
@@ -285,6 +286,21 @@ class MainContainer extends Component {
       });
   }
 
+  setTimer = (time) => {
+    this.setState({ cardTimer: time })
+    console.log('time set to', time)
+  }
+
+  runTimer = (time) => {
+    while (time >= 0) {
+      time--;
+      console.log(time)
+    }
+    if (time <= 0) {
+      this.updateCard(this.state.currentCard.id);
+      this.getRating(this.state.currentCard.id);
+    }
+  }
   render() {
 
     return (

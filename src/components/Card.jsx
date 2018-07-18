@@ -152,7 +152,7 @@ const Timer = styled.div`
   background-color: #145674;
   height: 100px;
   width: 100%;
-  flex: .2
+  flex: .2;
 `
 const CardHolder = styled.div`
   display: flex; 
