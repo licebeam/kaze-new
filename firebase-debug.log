@@ -1,0 +1,121 @@
+[debug] [2018-07-18T06:24:57.661Z] ----------------------------------------------------------------------
+[debug] [2018-07-18T06:24:57.663Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2018-07-18T06:24:57.663Z] CLI Version:   3.19.3
+[debug] [2018-07-18T06:24:57.663Z] Platform:      darwin
+[debug] [2018-07-18T06:24:57.663Z] Node Version:  v8.11.2
+[debug] [2018-07-18T06:24:57.664Z] Time:          Wed Jul 18 2018 15:24:57 GMT+0900 (JST)
+[debug] [2018-07-18T06:24:57.664Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-07-18T06:24:57.677Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-07-18T06:24:57.678Z] > authorizing via signed-in user
+[debug] [2018-07-18T06:24:57.679Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-07-18T06:24:57.679Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/b-T00gFSeQH2_jodEWItPUOcBMuaDSYoiyfRtqRTCMM',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Jul 18 2018 15:24:57 GMT+0900 (JST)
+[debug] [2018-07-18T06:24:57.869Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-18T06:24:57.883Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/kazeapp  
+  
+ Wed Jul 18 2018 15:24:57 GMT+0900 (JST)
+[debug] [2018-07-18T06:24:58.661Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-18T06:24:58.663Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/kazeapp/tokens  
+  
+ Wed Jul 18 2018 15:24:58 GMT+0900 (JST)
+[debug] [2018-07-18T06:24:59.483Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'kazeapp'...
+[info] 
+[info] i  deploying database, storage, firestore, functions, hosting
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] ✔  functions: Finished running predeploy script.
+[info] i  database: checking rules syntax...
+[debug] [2018-07-18T06:25:03.247Z] >>> HTTP REQUEST PUT https://kazeapp.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+} 
+ Wed Jul 18 2018 15:25:03 GMT+0900 (JST)
+[debug] [2018-07-18T06:25:04.309Z] <<< HTTP RESPONSE 200
+[info] ✔  database: rules syntax for database kazeapp is valid
+[debug] [2018-07-18T06:25:04.311Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/kazeapp  
+  
+ Wed Jul 18 2018 15:25:04 GMT+0900 (JST)
+[debug] [2018-07-18T06:25:05.420Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2018-07-18T06:25:05.423Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/kazeapp:test  
+ { source: { files: [ [Object] ] } } 
+ Wed Jul 18 2018 15:25:05 GMT+0900 (JST)
+[debug] [2018-07-18T06:25:06.665Z] <<< HTTP RESPONSE 200
+[info] ✔  storage: rules file storage.rules compiled successfully
+[info] i  firestore: checking firestore.rules for compilation errors...
+[debug] [2018-07-18T06:25:06.669Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/kazeapp:test  
+ { source: { files: [ [Object] ] } } 
+ Wed Jul 18 2018 15:25:06 GMT+0900 (JST)
+[debug] [2018-07-18T06:25:07.984Z] <<< HTTP RESPONSE 200
+[info] ✔  firestore: rules file firestore.rules compiled successfully
+[debug] [2018-07-18T06:25:07.987Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "~5.12.1",
+    "firebase-functions": "^1.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.12.0",
+    "eslint-plugin-promise": "^3.6.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2018-07-18T06:25:07.988Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/kazeapp?view=CONSUMER_VIEW  
+  
+ Wed Jul 18 2018 15:25:07 GMT+0900 (JST)
+[debug] [2018-07-18T06:25:07.989Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/kazeapp?view=CONSUMER_VIEW  
+  
+ Wed Jul 18 2018 15:25:07 GMT+0900 (JST)
+[debug] [2018-07-18T06:25:09.314Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-18T06:25:09.319Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2018-07-18T06:25:09.321Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/kazeapp  
+  
+ Wed Jul 18 2018 15:25:09 GMT+0900 (JST)
+[debug] [2018-07-18T06:25:10.233Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-18T06:25:10.234Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/92317655588:getServerAppConfig  
+  
+ Wed Jul 18 2018 15:25:10 GMT+0900 (JST)
+[debug] [2018-07-18T06:25:10.961Z] <<< HTTP RESPONSE 200
+[info] i  storage: uploading rules storage.rules...
+[debug] [2018-07-18T06:25:10.965Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/kazeapp/rulesets  
+ { source: { files: [ [Object] ] } } 
+ Wed Jul 18 2018 15:25:10 GMT+0900 (JST)
+[debug] [2018-07-18T06:25:12.383Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-18T06:25:12.383Z] [rules] created ruleset projects/kazeapp/rulesets/8e74c06d-9536-4559-9951-604fc0bb351c
+[info] i  firestore: uploading rules firestore.rules...
+[debug] [2018-07-18T06:25:12.387Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/kazeapp/rulesets  
+ { source: { files: [ [Object] ] } } 
+ Wed Jul 18 2018 15:25:12 GMT+0900 (JST)
+[debug] [2018-07-18T06:25:12.388Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta1/projects/kazeapp/databases/(default)/indexes  
+  
+ Wed Jul 18 2018 15:25:12 GMT+0900 (JST)
+[debug] [2018-07-18T06:25:13.310Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-18T06:25:13.722Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-18T06:25:13.722Z] [rules] created ruleset projects/kazeapp/rulesets/47fe0cdc-2f9e-427a-a354-e08420940b3f
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2018-07-18T06:25:13.724Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/kazeapp/configs  
+  
+ Wed Jul 18 2018 15:25:13 GMT+0900 (JST)
+[debug] [2018-07-18T06:25:14.225Z] <<< HTTP RESPONSE 200
+[info] i  hosting: preparing build directory for upload...
