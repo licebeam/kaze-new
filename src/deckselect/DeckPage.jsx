@@ -88,7 +88,7 @@ const Container = styled.div`
 class DeckPage extends Component {
 
   render() {
-    const { getCards, getDecks } = this.props;
+    const { getCards, getDecks, setTimer, runTimer } = this.props;
     return (
       <Container>
         <div className="top-bar" >
@@ -101,7 +101,7 @@ class DeckPage extends Component {
               <button className="sort-button">
                 <FontAwesomeIcon icon="sort" size="4x" />
               </button>
-              <button className="timer-button">
+              <button className="timer-button" onClick={() => setTimer(5000)}>
                 <FontAwesomeIcon icon="clock" size="4x" />
               </button>
               <button className='select-deck' onClick={() => {

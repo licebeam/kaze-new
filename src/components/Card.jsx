@@ -153,6 +153,10 @@ const Timer = styled.div`
   height: 100px;
   width: 100%;
   flex: .2;
+  /* div {
+    width: ${prop => prop.currentTimer + `px`}; 
+    background-color: black;
+  } */
 `
 const CardHolder = styled.div`
   display: flex; 
@@ -176,6 +180,8 @@ const Card = ({
   userDeck,
   getRating,
   currentRating,
+  cardTimer,
+  currentTimer,
 }) => {
   const deckLength = cardList[0];
   if (currentDeck.length >= 1) {
@@ -248,7 +254,11 @@ const Card = ({
           </div>
 
         </CardBody>
-        <Timer />
+        <Timer>
+          <div>
+            timer;
+          </div>
+        </Timer>
       </CardHolder >
     )
   } else return (

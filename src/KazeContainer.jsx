@@ -17,6 +17,8 @@ const propTypes = {
   userDeck: PropTypes.array,
   getRating: PropTypes.func,
   currentRating: PropTypes.string,
+  cardTimer: PropTypes.number,
+  currentTimer: PropTypes.number,
 };
 
 const Container = styled.div`
@@ -41,7 +43,9 @@ class KazeContainer extends Component {
       addToUserDeck,
       userDeck,
       getRating,
-      currentRating
+      currentRating,
+      cardTimer,
+      currentTimer,
     } = this.props;
     return (
       <Container>
@@ -59,6 +63,8 @@ class KazeContainer extends Component {
           userDeck={userDeck}
           getRating={getRating}
           currentRating={currentRating}
+          cardTimer={cardTimer}
+          currentTimer={currentTimer}
         />
       </Container>
     );

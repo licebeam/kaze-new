@@ -35,6 +35,8 @@ const KazeBody = ({
   userDeck,
   getRating,
   currentRating,
+  cardTimer,
+  currentTimer,
 }) => {
   return (
     <MainBody>
@@ -53,6 +55,8 @@ const KazeBody = ({
           userDeck={userDeck}
           getRating={getRating}
           currentRating={currentRating}
+          cardTimer={cardTimer}
+          currentTimer={currentTimer}
         />
       </div>
       <div className='user-input'></div>

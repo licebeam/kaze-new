@@ -60,6 +60,7 @@ class MainContainer extends Component {
       cardFlipped: 'front',
       hintShown: false,
       cardTimer: 0,
+      currentTimer: 0,
       //user state
       userHandle: '',
       userEmail: '',
@@ -160,6 +161,7 @@ class MainContainer extends Component {
     this.setState({ currentCard: cards[cards.length > curCard + 1 ? curCard + 1 : 0] })
     this.getRating(this.state.currentCard.id);
     this.state.cardsMemorized <= 0 ? this.setState({ cardsMemorized: 0 }) : null;
+    this.state.cardTimer >= 0 ? this.runTimer() : console.log('no timer');
   }
   prevCard = (cardId) => {
     const curCard = cardId - 1;
@@ -290,16 +292,20 @@ class MainContainer extends Component {
     this.setState({ cardTimer: time })
     console.log('time set to', time)
   }
+  reduceTimer = () => {
 
-  runTimer = (time) => {
-    while (time >= 0) {
-      time--;
-      console.log(time)
-    }
-    if (time <= 0) {
-      this.updateCard(this.state.currentCard.id);
-      this.getRating(this.state.currentCard.id);
-    }
+    // console.log(this.state.cardTimer)
+    this.state.cardTimer >= 0 ? this.reduceTimer() : this.runTimer();
+
+  }
+  runTimer = () => {
+    this.state.cardTimer === 0
+      ? console.log('no timer')
+      : setTimeout(() => {
+        console.log('switch cards here')
+        this.updateCard(this.state.currentCard.id);
+        this.getRating(this.state.currentCard.id);
+      }, this.state.cardTimer);
   }
   render() {
 
@@ -327,6 +333,8 @@ class MainContainer extends Component {
               currentDeck={this.state.currentDeck}
               getCards={this.getCards}
               getDecks={this.getDecks}
+              setTimer={this.setTimer}
+              runTimer={this.runTimer}
             />}
           />
           <Route exact path="/Profile" render={() =>
@@ -352,6 +360,8 @@ class MainContainer extends Component {
               userDeck={this.state.userDeck}
               getRating={this.getRating}
               currentRating={this.state.currentRating}
+              cardTimer={this.state.cardTimer}
+              currentTimer={this.state.currentTimer}
             />}
           />
           <Footer />
