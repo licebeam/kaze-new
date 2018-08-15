@@ -57,7 +57,7 @@ const Header = ({
   return (
     <HeaderBody>
       <div className="title">
-        <Link to='/'>
+        <Link to='/Home'>
           <h1>WAVERADIO</h1>
         </Link>
       </div>

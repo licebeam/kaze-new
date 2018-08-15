@@ -9,8 +9,11 @@ const FooterBody = styled.div`
 `
 
 const Footer = ({ }) => {
+
   return (
-    <FooterBody />
+    <FooterBody>
+
+    </FooterBody>
   )
 }
 
