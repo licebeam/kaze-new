@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import KazeBody from './components/KazeBody';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {
@@ -13,23 +12,22 @@ import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 const propTypes = {
-  getDeck: PropTypes.func,
 }
 const Container = styled.div`
   overflow-x: hidden;
-  background-color: #21A4D3;
+  background-color: #fff;
   height: 80vh;
   font-family: 'Roboto', sans-serif;
   text-align: center;
   display: flex;
   flex-direction: column;
   .auth-container {
-    background-color: #21A4D3;
+    background-color: #fff;
   }
   .top-bar{
     margin: 0 auto;
-    background-color: #145674;
-    color: #fff;
+    background-color: #fff;
+    color: black;
     height: 60px;
     width: 100%;
     padding-bottom: 20px;
@@ -45,7 +43,6 @@ const Container = styled.div`
 class LogIn extends Component {
   render() {
     const {
-      getDecks,
       uiConfig,
       firebaseAuth,
     } = this.props;
@@ -56,11 +53,6 @@ class LogIn extends Component {
         </div>
         <div className="auth-container">
           <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-        </div>
-        <div>
-          <Link to='/Decks'>
-            Continue without logging in?
-          </Link>
         </div>
       </Container >
     );

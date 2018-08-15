@@ -21,15 +21,9 @@ const UserProfile = ({
   userHandle,
   userPhoto,
   userEmail,
-  cardsMemorized,
 }) => {
   return (
     <ProfileContainer>
-      <button>
-        <Link to='/Decks'>
-          Back
-            </Link>
-      </button>
       <div>
         <img src={userPhoto} alt="" />
       </div>
@@ -39,10 +33,6 @@ const UserProfile = ({
       <div>
         Registered Email: {userEmail}
       </div>
-      <div>
-        Cards Memorized: {cardsMemorized}
-      </div>
-
     </ProfileContainer>
   )
 }

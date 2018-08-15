@@ -10,7 +10,7 @@ const HeaderBody = styled.div`
   z-index: 10;
   width: 100%;
   height: 10vh;
-  background-color: #023855;
+  background-color: black;
   color: #fff;
   display: flex; 
   flex-direction: row;
@@ -58,7 +58,7 @@ const Header = ({
     <HeaderBody>
       <div className="title">
         <Link to='/'>
-          <h1>Kaze</h1>
+          <h1>WAVERADIO</h1>
         </Link>
       </div>
 
