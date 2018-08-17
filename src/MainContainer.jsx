@@ -56,16 +56,20 @@ const Container = styled.div`
   display: flex;
 `
 const Section = styled.div`
-  background-color: green;
-  flex: 1;
+  background-color: #fff;
+  flex: 1.5;
   img{
     object-fit:cover;
     height: 100%;
   }
 `
-const SectionPlayer = styled.div`
+const SectionLogin = styled.div`
   background-color: #fff;
   flex: 1;
+`
+const SectionPlayer = styled.div`
+  background-color: #fff;
+  flex: .5;
   padding: 20px;
   visibility: ${props => props.audio ? 'visible' : 'hidden'};
 `
@@ -74,7 +78,12 @@ const ArtistContainer = styled.div`
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  align-items: center;
+
   img{
+    margin-top: 20px;
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
     border: 2px solid #000;
   }
@@ -217,12 +226,12 @@ class MainContainer extends Component {
               <Section>
                 <img src="https://i.pinimg.com/originals/98/ba/4c/98ba4c2fdb2add2645eb9943adeb8fa1.gif" alt="" />
               </Section>
-              <Section>
+              <SectionLogin>
                 <LogIn
                   uiConfig={uiConfig}
                   firebaseAuth={firebase.auth()}
                 />
-              </Section>
+              </SectionLogin>
             </Container>
           }
           />
