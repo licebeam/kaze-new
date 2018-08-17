@@ -69,6 +69,16 @@ const SectionPlayer = styled.div`
   padding: 20px;
   visibility: ${props => props.audio ? 'visible' : 'hidden'};
 `
+const ArtistContainer = styled.div`
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  img{
+    border-radius: 50%;
+    border: 2px solid #000;
+  }
+`
 //
 class MainContainer extends Component {
   constructor(props) {
@@ -191,10 +201,10 @@ class MainContainer extends Component {
               <SectionPlayer audio={this.state.audio}>
                 <iframe width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/149653941&color=%23274769&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
                 </iframe>
-                <div>
+                <ArtistContainer>
                   {this.state.artistName}
                   <img src={this.state.artistArt} />
-                </div>
+                </ArtistContainer>
               </SectionPlayer>
               {/* <button
 
