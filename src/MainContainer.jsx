@@ -77,6 +77,7 @@ const SectionPlayer = styled.div`
   padding: 20px;
   visibility: ${props => props.audio ? 'visible' : 'hidden'};
   text-align: center;
+  font-size: 1.2rem;
   img{
     margin-top: 20px;
   }
@@ -85,6 +86,7 @@ const SectionPlayer = styled.div`
   }
   .links{
     margin-top: 20px;
+    font-size: .8rem;
   }
   button{
     width: 100px;
