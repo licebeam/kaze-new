@@ -139,7 +139,6 @@ class MainContainer extends Component {
           this.updateInformation()
           this.getSongInfo()
           this.setState({ bodyImage: bodyImages[this.getRandomInt(bodyImages.length)] })
-          console.log(this.state.currentSound)
         }
 
       }
@@ -188,18 +187,23 @@ class MainContainer extends Component {
   }
 
   updateInformation = () => {
-    db.collection('songs').doc('track')
-      .update({
-        songInfo: this.state.currentSound
-      })
-      .then(() => {
-        // console.log(userDeck)
-        // console.log('updated songInfo', this.state.currentSound)
-      })
-      .catch((error) => {
-        console.log('there was an error updating user song')
-      })
+    if (this.state.userUid !== "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
+      console.log(this.state.userUid)
+      console.log('updating song info')
+      db.collection('songs').doc('track')
+        .update({
+          songInfo: this.state.currentSound
+        })
+        .then(() => {
+          // console.log(userDeck)
+          // console.log('updated songInfo', this.state.currentSound)
+        })
+        .catch((error) => {
+          console.log('there was an error updating user song')
+        })
+    } else console.log('not admin')
   }
+
   getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
@@ -235,7 +239,7 @@ class MainContainer extends Component {
           <Route exact path="/Home" render={() =>
             <Container>
               <SectionPlayer audio={this.state.audio}>
-                <iframe width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/584897883&color=%23274769&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+                <iframe width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/149653941&color=%23274769&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
                 </iframe>
                 <ArtistContainer>
                   {this.state.artistName}
