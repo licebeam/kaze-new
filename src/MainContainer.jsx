@@ -306,7 +306,7 @@ class MainContainer extends Component {
                         this.state.audio.pause(),
                           this.setState({ songPlaying: false })
                       }
-                    }}>&#10148;</button>
+                    }}>&#x3e;</button>
                   </div>
                 </ArtistContainer>
               </SectionPlayer>
