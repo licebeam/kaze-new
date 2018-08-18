@@ -187,7 +187,7 @@ class MainContainer extends Component {
   }
 
   updateInformation = () => {
-    if (this.state.userUid !== "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
+    if (this.state.userUid === "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
       console.log(this.state.userUid)
       console.log('updating song info')
       db.collection('songs').doc('track')
@@ -213,14 +213,14 @@ class MainContainer extends Component {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          console.log('gettingdata', doc.data())
+          // console.log('gettingdata', doc.data())
           const data = doc.data();
           this.setState({ artistArt: data.songInfo.artwork_url })
           this.setState({ artistName: data.songInfo.user.username })
           this.setState({ artistTitle: data.songInfo.title })
           this.setState({ artistLinkSoundcloud: data.songInfo.user.permalink_url })
           this.setState({ artistLinkBandcamp: data.songInfo.purchase_url })
-          console.log(this.state.artistArt)
+          // console.log(this.state.artistArt)
         });
       })
       .catch(function (error) {
@@ -266,10 +266,11 @@ class MainContainer extends Component {
 
               </Section>
               <SectionLogin>
-                <LogIn
+                Live Chat Coming Soon
+                {/* <LogIn
                   uiConfig={uiConfig}
                   firebaseAuth={firebase.auth()}
-                />
+                /> */}
               </SectionLogin>
             </Container>
           }
