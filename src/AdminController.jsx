@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import LogIn from './LogIn.jsx';
-import AdminController from './AdminController'
 import { router } from 'sw-toolbox';
 import {
   BrowserRouter as Router,
@@ -21,38 +20,6 @@ var bodyImages = [
   "https://thumbs.gfycat.com/OfficialSkeletalArrowcrab-size_restricted.gif",
   "https://static.tumblr.com/f39d9cf23b76436897bf8f30c5907149/g1wmm1e/njqog600a/tumblr_static_tumblr_static_8zvmg4u2ymg40w88444s88kkk_640.gif"
 ]
-
-var config = {
-  apiKey: "AIzaSyC9kgL1DXJ-rjmVq7J6ghqofptEFajpb_0", //NEEDS TO CHANGE
-  authDomain: "kazeapp.firebaseapp.com",
-  databaseURL: "https://kazeapp.firebaseio.com",
-  projectId: "kazeapp",
-  storageBucket: "kazeapp.appspot.com",
-  messagingSenderId: "92317655588",
-};
-
-firebase.initializeApp(config);
-// Initialize Cloud Firestore through Firebase
-// var ui = new firebaseui.auth.AuthUI(firebase.auth());
-// Configure FirebaseUI.
-const uiConfig = {
-  // Popup signin flow rather than redirect flow.
-  signInFlow: 'popup',
-  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-  signInSuccessUrl: '/Home',
-  // We will display Google and Facebook as auth providers.
-  signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID
-  ]
-};
-// The start method will wait until the DOM is loaded
-
-// ui.start('#firebaseui-auth-container', uiConfig);
-const firestore = firebase.firestore();
-const settings = {/* your settings... */ timestampsInSnapshots: true };
-firestore.settings(settings);
-var db = firebase.firestore();
 
 
 //STYLED COMPONENTS 
@@ -154,14 +121,14 @@ class MainContainer extends Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in.
-        db.collection('users').doc(user.email)
+        this.props.db.collection('users').doc(user.email)
           .update({ userEmail: user.email })
           .then(() => {
             console.log('updating user')
           })
           .catch((error) => {
             console.log('error, user does not exist')
-            db.collection('users').doc(user.email)
+            this.props.db.collection('users').doc(user.email)
               .set({
                 userEmail: user.email,
                 userDecks: [],
@@ -189,7 +156,7 @@ class MainContainer extends Component {
   }
 
   updateInformation = () => {
-    db.collection('songs').doc('track')
+    this.props.db.collection('songs').doc('track')
       .update({
         songInfo: this.state.currentSound
       })
@@ -206,7 +173,7 @@ class MainContainer extends Component {
   }
 
   getSongInfo = () => { //gets all decks by group
-    db.collection("songs")
+    this.props.db.collection("songs")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -226,14 +193,11 @@ class MainContainer extends Component {
   }
 
   render() {
+    const { db } = this.props
     return (
       <Router>
         <div>
-          <Header
-            userHandle={this.state.userHandle}
-            userPhoto={this.state.userPhoto}
-          />
-          <Route exact path="/Home" render={() =>
+          <Route exact path="/Admin" render={() =>
             <Container>
               <SectionPlayer audio={this.state.audio}>
                 <iframe width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/584897883&color=%23274769&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
@@ -251,39 +215,12 @@ class MainContainer extends Component {
                   </div>
                 </ArtistContainer>
               </SectionPlayer>
-              {/* <button
-
-                onClick={() => {
-                  this.state.audio.toggle();
-                  this.state.audio.getCurrentSound((e) => { this.setState({ currentSound: e }) });
-                  this.setState({ art: this.state.currentSound.artwork_url })
-                  // this.setState({ audio: false })
-                }}>Pause Audio</button> */}
               <Section bodyImage={this.state.bodyImage}>
 
               </Section>
-              <SectionLogin>
-                <LogIn
-                  uiConfig={uiConfig}
-                  firebaseAuth={firebase.auth()}
-                />
-              </SectionLogin>
+
             </Container>
           }
-          />
-          <Route exact path="/Profile" render={() =>
-            <UserProfile
-              userEmail={this.state.userEmail}
-              userHandle={this.state.userHandle}
-              userPhoto={this.state.userPhoto}
-            />}
-          />
-          <Route exact path="/Admin" render={() =>
-            <AdminController
-              db={db}
-              userHandle={this.state.userHandle}
-              userPhoto={this.state.userPhoto}
-            />}
           />
           <Footer />
         </div>
