@@ -166,6 +166,12 @@ class MainContainer extends Component {
             )
           })
         }
+        //get track time for user
+        if (this.state.userUid !== "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
+          //GETS THE CURRENT TRACK TIME FOR UPDATE
+          console.log('user track time')
+          this.state.audio.getPosition((e) => { this.setState({ currentTrackTime: e }) })
+        }
         //RESET TRACKLIST AT END
         if (this.state.userUid === "TVsxMOD656ZfuK3aNJtLBrEUfh12" && this.state.currentTrack >= this.state.currentSetLength - 1) {
           this.state.audio.skip(0);
