@@ -14,7 +14,6 @@ import firebase from 'firebase';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import UserProfile from './userprofile/UserProfile'
-import FacebookPlayer from 'react-facebook-player';
 
 var bodyImages = [
   "https://i.pinimg.com/originals/98/ba/4c/98ba4c2fdb2add2645eb9943adeb8fa1.gif",
@@ -57,7 +56,7 @@ var db = firebase.firestore();
 
 let my_video_player;
 //FB VIDEO CONFIG
-const checking = () => {
+const playVideo = () => {
   window.fbAsyncInit = function () {
     FB.init({
       appId: '{your-app-id}',
@@ -74,7 +73,6 @@ const checking = () => {
         my_video_player.play();
       }
     });
-
   };
 }
 (function (d, s, id) {
@@ -151,13 +149,12 @@ class MainContainer extends Component {
       artistTitle: '',
       artistLinkSoundcloud: '',
       artistLinkBandcamp: '',
-      player: null,
     }
   }
 
   componentDidMount() {
     this.logInSet();
-    checking();
+    playVideo();
     setInterval(() => {
       if (document.querySelector('iframe')) {
         var SC = SC || {}; SC.Widget = function (n) { function t(r) { if (e[r]) return e[r].exports; var o = e[r] = { exports: {}, id: r, loaded: !1 }; return n[r].call(o.exports, o, o.exports, t), o.loaded = !0, o.exports } var e = {}; return t.m = n, t.c = e, t.p = "", t(0) }([function (n, t, e) { function r(n) { return !!("" === n || n && n.charCodeAt && n.substr) } function o(n) { return !!(n && n.constructor && n.call && n.apply) } function i(n) { return !(!n || 1 !== n.nodeType || "IFRAME" !== n.nodeName.toUpperCase()) } function a(n) { var t, e = !1; for (t in b) if (b.hasOwnProperty(t) && b[t] === n) { e = !0; break } return e } function s(n) { var t, e, r; for (t = 0, e = I.length; t < e && (r = n(I[t]), r !== !1); t++); } function u(n) { var t, e, r, o = ""; for ("//" === n.substr(0, 2) && (n = window.location.protocol + n), r = n.split("/"), t = 0, e = r.length; t < e && t < 3; t++)o += r[t], t < 2 && (o += "/"); return o } function c(n) { return n.contentWindow ? n.contentWindow : n.contentDocument && "parentWindow" in n.contentDocument ? n.contentDocument.parentWindow : null } function l(n) { var t, e = []; for (t in n) n.hasOwnProperty(t) && e.push(n[t]); return e } function d(n, t, e) { e.callbacks[n] = e.callbacks[n] || [], e.callbacks[n].push(t) } function E(n, t) { var e, r = !0; return t.callbacks[n] = [], s(function (t) { if (e = t.callbacks[n] || [], e.length) return r = !1, !1 }), r } function f(n, t, e) { var r, o, i = c(e); return !!i.postMessage && (r = e.getAttribute("src").split("?")[0], o = JSON.stringify({ method: n, value: t }), "//" === r.substr(0, 2) && (r = window.location.protocol + r), r = r.replace(/http:\/\/(w|wt).soundcloud.com/, "https://$1.soundcloud.com"), void i.postMessage(o, r)) } function p(n) { var t; return s(function (e) { if (e.instance === n) return t = e, !1 }), t } function h(n) { var t; return s(function (e) { if (c(e.element) === n) return t = e, !1 }), t } function v(n, t) { return function (e) { var r = o(e), i = p(this), a = !r && t ? e : null, s = r && !t ? e : null; return s && d(n, s, i), f(n, a, i.element), this } } function S(n, t, e) { var r, o, i; for (r = 0, o = t.length; r < o; r++)i = t[r], n[i] = v(i, e) } function R(n, t, e) { return n + "?url=" + t + "&" + g(e) } function g(n) { var t, e, r = []; for (t in n) n.hasOwnProperty(t) && (e = n[t], r.push(t + "=" + ("start_track" === t ? parseInt(e, 10) : e ? "true" : "false"))); return r.join("&") } function m(n, t, e) { var r, o, i = n.callbacks[t] || []; for (r = 0, o = i.length; r < o; r++)i[r].apply(n.instance, e); (a(t) || t === L.READY) && (n.callbacks[t] = []) } function w(n) { var t, e, r, o, i; try { e = JSON.parse(n.data) } catch (a) { return !1 } return t = h(n.source), r = e.method, o = e.value, (!t || A(n.origin) === A(t.domain)) && (t ? (r === L.READY && (t.isReady = !0, m(t, C), E(C, t)), r !== L.PLAY || t.playEventFired || (t.playEventFired = !0), r !== L.PLAY_PROGRESS || t.playEventFired || (t.playEventFired = !0, m(t, L.PLAY, [o])), i = [], void 0 !== o && i.push(o), void m(t, r, i)) : (r === L.READY && T.push(n.source), !1)) } function A(n) { return n.replace(Y, "") } var _, y, O, D = e(1), b = e(2), P = e(3), L = D.api, N = D.bridge, T = [], I = [], C = "__LATE_BINDING__", k = "http://wt.soundcloud.test:9200/", Y = /^http(?:s?)/; window.addEventListener ? window.addEventListener("message", w, !1) : window.attachEvent("onmessage", w), n.exports = O = function (n, t, e) { if (r(n) && (n = document.getElementById(n)), !i(n)) throw new Error("SC.Widget function should be given either iframe element or a string specifying id attribute of iframe element."); t && (e = e || {}, n.src = R(k, t, e)); var o, a, s = h(c(n)); return s && s.instance ? s.instance : (o = T.indexOf(c(n)) > -1, a = new _(n), I.push(new y(a, n, o)), a) }, O.Events = L, window.SC = window.SC || {}, window.SC.Widget = O, y = function (n, t, e) { this.instance = n, this.element = t, this.domain = u(t.getAttribute("src")), this.isReady = !!e, this.callbacks = {} }, _ = function () { }, _.prototype = { constructor: _, load: function (n, t) { if (n) { t = t || {}; var e = this, r = p(this), o = r.element, i = o.src, a = i.substr(0, i.indexOf("?")); r.isReady = !1, r.playEventFired = !1, o.onload = function () { e.bind(L.READY, function () { var n, e = r.callbacks; for (n in e) e.hasOwnProperty(n) && n !== L.READY && f(N.ADD_LISTENER, n, r.element); t.callback && t.callback() }) }, o.src = R(a, n, t) } }, bind: function (n, t) { var e = this, r = p(this); return r && r.element && (n === L.READY && r.isReady ? setTimeout(t, 1) : r.isReady ? (d(n, t, r), f(N.ADD_LISTENER, n, r.element)) : d(C, function () { e.bind(n, t) }, r)), this }, unbind: function (n) { var t, e = p(this); e && e.element && (t = E(n, e), n !== L.READY && t && f(N.REMOVE_LISTENER, n, e.element)) } }, S(_.prototype, l(b)), S(_.prototype, l(P), !0) }, function (n, t) { t.api = { LOAD_PROGRESS: "loadProgress", PLAY_PROGRESS: "playProgress", PLAY: "play", PAUSE: "pause", FINISH: "finish", SEEK: "seek", READY: "ready", OPEN_SHARE_PANEL: "sharePanelOpened", CLICK_DOWNLOAD: "downloadClicked", CLICK_BUY: "buyClicked", ERROR: "error" }, t.bridge = { REMOVE_LISTENER: "removeEventListener", ADD_LISTENER: "addEventListener" } }, function (n, t) { n.exports = { GET_VOLUME: "getVolume", GET_DURATION: "getDuration", GET_POSITION: "getPosition", GET_SOUNDS: "getSounds", GET_CURRENT_SOUND: "getCurrentSound", GET_CURRENT_SOUND_INDEX: "getCurrentSoundIndex", IS_PAUSED: "isPaused" } }, function (n, t) { n.exports = { PLAY: "play", PAUSE: "pause", TOGGLE: "toggle", SEEK_TO: "seekTo", SET_VOLUME: "setVolume", NEXT: "next", PREV: "prev", SKIP: "skip" } }]);
@@ -167,6 +164,8 @@ class MainContainer extends Component {
 
         this.state.audio.getCurrentSound((e) => { this.setState({ currentSound: e }) });
         if (this.state.currentSound.title != this.state.artistTitle) {
+          console.log(this.state.currentSound)
+          playVideo();
           this.updateInformation()
           this.getSongInfo()
           this.setState({ bodyImage: bodyImages[this.getRandomInt(bodyImages.length)] })
@@ -247,7 +246,7 @@ class MainContainer extends Component {
           // console.log('gettingdata', doc.data())
           const data = doc.data();
           this.setState({ artistArt: data.songInfo.artwork_url })
-          this.setState({ artistName: data.songInfo.user.username })
+          this.setState({ artistName: data.songInfo.user.username ? data.songInfo.user.username : 'Unknown Artist' })
           this.setState({ artistTitle: data.songInfo.title })
           this.setState({ artistLinkSoundcloud: data.songInfo.user.permalink_url })
           this.setState({ artistLinkBandcamp: data.songInfo.purchase_url })
@@ -258,21 +257,7 @@ class MainContainer extends Component {
         console.log("Error getting documents: ", error);
       });
   }
-  onReady = (player) => {
-    this.setState({
-      player: player,
-    });
-  }
 
-  playVideo = () => {
-    const { player } = this.state;
-    if (player) player.play();
-  }
-
-  pauseVideo = () => {
-    const { player } = this.state;
-    if (player) player.pause();
-  }
   render() {
     const { my_video_player } = this.props
     return (
@@ -288,16 +273,8 @@ class MainContainer extends Component {
                 {this.state.userUid === "TVsxMOD656ZfuK3aNJtLBrEUfh12" ? (
                   <iframe width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/584897883&color=%23274769&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 ) :
-                  <div>
-                    <FacebookPlayer
-                      videoId={10160921175240372}
-                      onReady={this.onReady}
-                      width={300}
-                    />
-                    <button onClick={this.playVideo}>Play</button>
-                    <button onClick={this.pauseVideo}>Pause</button>
-                  </div>
-                }
+                  <div class="fb-video" data-href="https://www.facebook.com/2140766222844519/videos/2326516444272338/"
+                    data-width="200" data-show-text="false"><blockquote cite="https://www.facebook.com/2140766222844519/videos/2326516444272338/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/2140766222844519/videos/283717652412366/">test 2</a><p>&lt;iframe src=&quot;https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F2140766222844519%2Fvideos%2F283717652412366%2F&amp;width=0&quot; width=&quot;0&quot; height=&quot;0&quot; style=&quot;border:none;overflow:hidden&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; allowTransparency=&quot;true&quot; allowFullScreen=&quot;true&quot;&gt;test</p>Posted by <a href="https://www.facebook.com/Null-Radio-2140766222844519/">Null Radio</a> on Saturday, August 18, 2018</blockquote></div>}
 
 
                 <ArtistContainer>
