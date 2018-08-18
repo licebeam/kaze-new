@@ -14,8 +14,12 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import UserProfile from './userprofile/UserProfile'
 
-
-
+var bodyImages = [
+  "https://i.pinimg.com/originals/98/ba/4c/98ba4c2fdb2add2645eb9943adeb8fa1.gif",
+  "http://gifimage.net/wp-content/uploads/2018/06/vaporwave-gif.gif",
+  "https://thumbs.gfycat.com/OfficialSkeletalArrowcrab-size_restricted.gif",
+  "https://static.tumblr.com/f39d9cf23b76436897bf8f30c5907149/g1wmm1e/njqog600a/tumblr_static_tumblr_static_8zvmg4u2ymg40w88444s88kkk_640.gif"
+]
 
 var config = {
   apiKey: "AIzaSyC9kgL1DXJ-rjmVq7J6ghqofptEFajpb_0", //NEEDS TO CHANGE
@@ -56,12 +60,10 @@ const Container = styled.div`
   display: flex;
 `
 const Section = styled.div`
-  background-color: #fff;
-  flex: 1.5;
-  img{
-    object-fit:cover;
-    height: 100%;
-  }
+  background-color: green;
+  flex: 2;
+  background: url(${props => props.bodyImage});
+  background-size: 100%;
 `
 const SectionLogin = styled.div`
   background-color: #fff;
@@ -72,6 +74,16 @@ const SectionPlayer = styled.div`
   flex: .5;
   padding: 20px;
   visibility: ${props => props.audio ? 'visible' : 'hidden'};
+  text-align: center;
+  img{
+    margin-top: 20px;
+  }
+  .title{
+    font-size: .8rem;
+  }
+  .links{
+    margin-top: 20px;
+  }
 `
 const ArtistContainer = styled.div`
   height: 100%;
@@ -79,20 +91,23 @@ const ArtistContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Roboto', sans-serif;
 
   img{
-    margin-top: 20px;
-    height: 100px;
-    width: 100px;
+    margin-bottom: 20px;
+    height: 120px;
+    width: 120px;
     border-radius: 50%;
     border: 2px solid #000;
   }
 `
+
 //
 class MainContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      bodyImage: '',
       totalPlaylistTime: '',
       updatedTime: '',
       audio: true,
@@ -101,7 +116,9 @@ class MainContainer extends Component {
       artistName: '',
       artistArt: '',
       songTitle: '',
-      userUrl: '',
+      artistTitle: '',
+      artistLinkSoundcloud: '',
+      artistLinkBandcamp: '',
     }
   }
 
@@ -117,9 +134,11 @@ class MainContainer extends Component {
 
 
         this.state.audio.getCurrentSound((e) => { this.setState({ currentSound: e }) });
-        if (this.state.currentSound.title != this.state.artistName) {
+        if (this.state.currentSound.title != this.state.artistTitle) {
           this.updateInformation()
           this.getSongInfo()
+          this.setState({ bodyImage: bodyImages[this.getRandomInt(bodyImages.length)] })
+          console.log(this.state.currentSound)
         }
 
       }
@@ -166,6 +185,7 @@ class MainContainer extends Component {
       }
     });
   }
+
   updateInformation = () => {
     db.collection('songs').doc('track')
       .update({
@@ -179,6 +199,9 @@ class MainContainer extends Component {
         console.log('there was an error updating user song')
       })
   }
+  getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
 
   getSongInfo = () => { //gets all decks by group
     db.collection("songs")
@@ -188,7 +211,10 @@ class MainContainer extends Component {
           console.log('gettingdata', doc.data())
           const data = doc.data();
           this.setState({ artistArt: data.songInfo.artwork_url })
-          this.setState({ artistName: data.songInfo.title })
+          this.setState({ artistName: data.songInfo.user.username })
+          this.setState({ artistTitle: data.songInfo.title })
+          this.setState({ artistLinkSoundcloud: data.songInfo.user.permalink_url })
+          this.setState({ artistLinkBandcamp: data.songInfo.purchase_url })
           console.log(this.state.artistArt)
         });
       })
@@ -208,11 +234,19 @@ class MainContainer extends Component {
           <Route exact path="/Home" render={() =>
             <Container>
               <SectionPlayer audio={this.state.audio}>
-                <iframe width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/149653941&color=%23274769&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+                <iframe width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/67688207&color=%23274769&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
                 </iframe>
                 <ArtistContainer>
                   {this.state.artistName}
                   <img src={this.state.artistArt} />
+                  <div className="title">
+                    {this.state.artistTitle}
+                  </div>
+                  <div className="links">
+                    <a href={this.state.artistLinkSoundcloud}>{this.state.artistLinkSoundcloud ? "SoundCloud" : ''}</a>
+                    <br />
+                    <a href={this.state.artistLinkBandcamp}>{this.state.artistLinkBandcamp ? "BandCamp" : ''}</a>
+                  </div>
                 </ArtistContainer>
               </SectionPlayer>
               {/* <button
@@ -223,8 +257,8 @@ class MainContainer extends Component {
                   this.setState({ art: this.state.currentSound.artwork_url })
                   // this.setState({ audio: false })
                 }}>Pause Audio</button> */}
-              <Section>
-                <img src="https://i.pinimg.com/originals/98/ba/4c/98ba4c2fdb2add2645eb9943adeb8fa1.gif" alt="" />
+              <Section bodyImage={this.state.bodyImage}>
+
               </Section>
               <SectionLogin>
                 <LogIn

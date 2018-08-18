@@ -58,7 +58,7 @@ const Header = ({
     <HeaderBody>
       <div className="title">
         <Link to='/Home'>
-          <h1>WAVERADIO</h1>
+          <h1>NULLRADIO</h1>
         </Link>
       </div>
 
