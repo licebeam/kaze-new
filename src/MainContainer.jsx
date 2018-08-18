@@ -137,11 +137,9 @@ class MainContainer extends Component {
           this.state.audio.getCurrentSoundIndex((e) => { this.setState({ currentTrack: e }) })
         }
 
-        this.state.audio.getCurrentSound((e) => { this.setState({ currentSound: e }) });
+        this.state.audio.getCurrentSound((e) => { this.setState({ currentSound: e }), console.log("CUR SOUND", this.state.currentSound) });
 
-        if (this.state.userUid !== "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
-          this.state.audio.skip(this.state.currentTrack ? this.state.currentTrack : false)
-        }
+
 
 
         console.log(this.state.currentTrack)
@@ -232,12 +230,17 @@ class MainContainer extends Component {
           this.setState({ artistLinkSoundcloud: data.songInfo.user.permalink_url })
           this.setState({ artistLinkBandcamp: data.songInfo.purchase_url })
           // console.log(this.state.artistArt)
+          if (this.state.userUid !== "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
+            console.log('skipping track')
+            this.state.audio.skip(data.currentTrack)
+          }
         });
       })
       .catch(function (error) {
         console.log("Error getting documents: ", error);
       });
   }
+
 
   render() {
     return (
@@ -250,7 +253,7 @@ class MainContainer extends Component {
           <Route exact path="/Home" render={() =>
             <Container>
               <SectionPlayer audio={this.state.audio}>
-                <iframe width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/149653941&color=%23274769&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+                <iframe width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/584897883&color=%23274769&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
                 </iframe>
 
                 <ArtistContainer>
@@ -279,6 +282,7 @@ class MainContainer extends Component {
               </Section>
               <SectionLogin>
                 Live Chat Coming Soon
+                No need to log in yet.
                 <LogIn
                   uiConfig={uiConfig}
                   firebaseAuth={firebase.auth()}
