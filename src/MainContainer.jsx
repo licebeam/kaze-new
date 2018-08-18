@@ -90,6 +90,13 @@ const SectionPlayer = styled.div`
     width: 100px;
     height: 40px;
     margin-top: 20px;
+    font-size: 3rem;
+    background:none;
+    border: none;
+    color:${props => props.songPlaying ? 'black' : '#F53240'};
+    &:hover{
+      color:  #F53240;
+    }
   }
 `
 const ArtistContainer = styled.div`
@@ -274,7 +281,7 @@ class MainContainer extends Component {
           />
           <Route exact path="/Home" render={() =>
             <Container>
-              <SectionPlayer audio={this.state.audio}>
+              <SectionPlayer songPlaying={this.state.songPlaying} audio={this.state.audio}>
                 <iframe width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/584897883&color=%23274769&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
                 </iframe>
 
@@ -299,7 +306,7 @@ class MainContainer extends Component {
                         this.state.audio.pause(),
                           this.setState({ songPlaying: false })
                       }
-                    }}>{this.state.songPlaying ? 'Pause' : 'Play'}</button>
+                    }}>&#10148;</button>
                   </div>
                 </ArtistContainer>
               </SectionPlayer>
