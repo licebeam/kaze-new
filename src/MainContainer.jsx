@@ -111,10 +111,9 @@ const ArtistContainer = styled.div`
 
   img{
     margin-bottom: 20px;
-    height: 120px;
-    width: 120px;
+    height: 150px;
+    width: 150px;
     border-radius: 50%;
-    border: 2px solid #000;
   }
 `
 
@@ -137,6 +136,9 @@ class MainContainer extends Component {
       artistLinkBandcamp: '',
       currentTrack: '',
       currentSetLength: 0,
+      //SYNCING
+      currentTrackTime: 0,
+      trackSynced: false,
       //CONTROLS
       songPlaying: true,
     }
@@ -152,6 +154,9 @@ class MainContainer extends Component {
         this.setState({ audio: widget })
 
         if (this.state.userUid === "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
+          //GETS THE CURRENT TRACK TIME FOR UPDATE
+          this.state.audio.getPosition((e) => { this.setState({ currentTrackTime: e }) })
+
           this.state.audio.getSounds((e) => {
             this.setState({ currentSetLength: e.length })
             // console.log(this.state.currentSetLength)
@@ -168,22 +173,42 @@ class MainContainer extends Component {
 
         this.state.audio.getCurrentSound((e) => { this.setState({ currentSound: e }) });
 
-
-
         if (this.state.userUid === "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
           this.state.audio.getCurrentSoundIndex((e) => { this.setState({ currentTrack: e }) })
         }
-        // console.log(this.state.currentTrack)
+
+        //CHECK WHICH TRACK WE ARE ON
         if (this.state.currentSound.title != this.state.artistTitle) {
           this.updateInformation()
           this.getSongInfo()
           this.setState({ bodyImage: bodyImages[this.getRandomInt(bodyImages.length)] })
         }
 
+        //SYNCE THE TRACK ON PAUSE AND LOAD ONE TIME
+        //skip to correct track
+
+        if (this.state.currentTrack !== 0) {
+          // this.getSongInfo()
+          // this.state.audio.skip(this.state.currentTrack);
+        }
+        //skip to correct time once per song/load
+        if (this.state.currentSound.title === this.state.artistTitle && this.state.userUid !== "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
+
+        }
+
       }
-    }, 1000);
-
-
+    }, 3000);
+    setInterval(() => {
+      console.log("CHECK TRACK TIMES")
+      if (this.state.userUid === "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
+        this.updateInformation()
+      }
+      if (this.state.userUid !== "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
+        this.updateInformation()
+        this.getSongInfo()
+      }
+      //check and update the trackTime for admin every minute
+    }, 60000);
   }
 
   logInSet = () => {
@@ -232,7 +257,8 @@ class MainContainer extends Component {
       db.collection('songs').doc('track')
         .update({
           songInfo: this.state.currentSound,
-          currentTrack: this.state.currentTrack
+          currentTrack: this.state.currentTrack,
+          currentTrackTime: this.state.currentTrackTime
         })
         .then(() => {
           // console.log(userDeck)
@@ -260,6 +286,13 @@ class MainContainer extends Component {
           this.setState({ artistTitle: data.songInfo.title })
           this.setState({ artistLinkSoundcloud: data.songInfo.user.permalink_url })
           this.setState({ artistLinkBandcamp: data.songInfo.purchase_url })
+          this.setState({ currentTrack: data.currentTrack })
+          if (this.state.currentTrackTime !== data.currentTrackTime && this.state.userUid !== "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
+            this.setState({ currentTrackTime: data.currentTrackTime })
+            this.state.audio.seekTo(this.state.currentTrackTime)
+            console.log("TRACK TIME SET", this.state.currentTrackTime)
+          }
+
           // console.log(this.state.artistArt)
           if (this.state.userUid !== "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
             console.log('skipping track')
