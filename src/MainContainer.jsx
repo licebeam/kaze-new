@@ -267,10 +267,10 @@ class MainContainer extends Component {
               </Section>
               <SectionLogin>
                 Live Chat Coming Soon
-                {/* <LogIn
+                <LogIn
                   uiConfig={uiConfig}
                   firebaseAuth={firebase.auth()}
-                /> */}
+                />
               </SectionLogin>
             </Container>
           }
