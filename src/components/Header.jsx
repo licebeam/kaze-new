@@ -65,7 +65,10 @@ const Header = ({
       <div></div>
       <div className="user-pic">
         <Link to='/Profile'>
-          <div><img src={userPhoto} alt="" /></div>
+          {userPhoto ? (
+            <div><img src={userPhoto} alt="" /></div>
+          ) : null}
+
         </Link>
       </div>
       {/* <div className="user-name">

@@ -56,15 +56,16 @@ var db = firebase.firestore();
 
 //STYLED COMPONENTS 
 const Container = styled.div`
-  background-color: brown;
+  background-color: #fff;
   display: flex;
 `
 const Section = styled.div`
-  background-color: green;
+  background-color: #fff;
   flex: 2;
   background: url(${props => props.bodyImage});
   background-size: 100%;
   background-size:cover;
+  height: 80vh;
 `
 const SectionLogin = styled.div`
   background-color: #fff;
@@ -121,6 +122,7 @@ class MainContainer extends Component {
       artistLinkSoundcloud: '',
       artistLinkBandcamp: '',
       currentTrack: '',
+      currentSetLength: 0,
     }
   }
 
@@ -134,15 +136,28 @@ class MainContainer extends Component {
         this.setState({ audio: widget })
 
         if (this.state.userUid === "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
-          this.state.audio.getCurrentSoundIndex((e) => { this.setState({ currentTrack: e }) })
+          this.state.audio.getSounds((e) => {
+            this.setState({ currentSetLength: e.length })
+            // console.log(this.state.currentSetLength)
+          })
+          this.state.audio.getCurrentSoundIndex((e) => {
+            this.setState({ currentTrack: e }
+            )
+          })
+        }
+        //RESET TRACKLIST AT END
+        if (this.state.userUid === "TVsxMOD656ZfuK3aNJtLBrEUfh12" && this.state.currentTrack >= this.state.currentSetLength - 1) {
+          this.state.audio.skip(0);
         }
 
-        this.state.audio.getCurrentSound((e) => { this.setState({ currentSound: e }), console.log("CUR SOUND", this.state.currentSound) });
+        this.state.audio.getCurrentSound((e) => { this.setState({ currentSound: e }) });
 
 
 
-
-        console.log(this.state.currentTrack)
+        if (this.state.userUid === "TVsxMOD656ZfuK3aNJtLBrEUfh12") {
+          this.state.audio.getCurrentSoundIndex((e) => { this.setState({ currentTrack: e }) })
+        }
+        // console.log(this.state.currentTrack)
         if (this.state.currentSound.title != this.state.artistTitle) {
           this.updateInformation()
           this.getSongInfo()
@@ -258,7 +273,7 @@ class MainContainer extends Component {
 
                 <ArtistContainer>
                   {this.state.artistName}
-                  <img src={this.state.artistArt} />
+                  <img src={this.state.artistArt ? this.state.artistArt : 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif'} />
                   <div className="title">
                     {this.state.artistTitle}
                   </div>
@@ -280,14 +295,14 @@ class MainContainer extends Component {
               <Section bodyImage={this.state.bodyImage}>
 
               </Section>
-              <SectionLogin>
+              {/* <SectionLogin>
                 Live Chat Coming Soon
                 No need to log in yet.
                 <LogIn
                   uiConfig={uiConfig}
                   firebaseAuth={firebase.auth()}
                 />
-              </SectionLogin>
+              </SectionLogin> */}
             </Container>
           }
           />
