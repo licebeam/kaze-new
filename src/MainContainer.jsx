@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import LogIn from './LogIn.jsx';
-import AdminController from './AdminController'
 import { router } from 'sw-toolbox';
 import {
   BrowserRouter as Router,
@@ -64,7 +63,7 @@ const Section = styled.div`
   background-color: green;
   flex: 2;
   background: url(${props => props.bodyImage});
-  /* background-size: 100%; */
+  background-size: 100%;
   background-size:cover;
 `
 const SectionLogin = styled.div`
@@ -274,13 +273,6 @@ class MainContainer extends Component {
           <Route exact path="/Profile" render={() =>
             <UserProfile
               userEmail={this.state.userEmail}
-              userHandle={this.state.userHandle}
-              userPhoto={this.state.userPhoto}
-            />}
-          />
-          <Route exact path="/Admin" render={() =>
-            <AdminController
-              db={db}
               userHandle={this.state.userHandle}
               userPhoto={this.state.userPhoto}
             />}
