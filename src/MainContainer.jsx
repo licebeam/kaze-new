@@ -63,7 +63,8 @@ const Section = styled.div`
   background-color: green;
   flex: 2;
   background: url(${props => props.bodyImage});
-  background-size: 100%;
+  /* background-size: 100%; */
+  background-size:cover;
 `
 const SectionLogin = styled.div`
   background-color: #fff;
@@ -234,7 +235,7 @@ class MainContainer extends Component {
           <Route exact path="/Home" render={() =>
             <Container>
               <SectionPlayer audio={this.state.audio}>
-                <iframe width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/67688207&color=%23274769&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+                <iframe width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/584897883&color=%23274769&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
                 </iframe>
                 <ArtistContainer>
                   {this.state.artistName}
