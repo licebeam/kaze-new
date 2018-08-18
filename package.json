@@ -14,6 +14,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-facebook-player": "^0.1.0",
     "react-firebaseui": "^3.0.4",
     "react-redux": "^5.0.7",
     "react-responsive-music-player": "^0.3.0",
