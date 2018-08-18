@@ -86,6 +86,11 @@ const SectionPlayer = styled.div`
   .links{
     margin-top: 20px;
   }
+  button{
+    width: 100px;
+    height: 40px;
+    margin-top: 20px;
+  }
 `
 const ArtistContainer = styled.div`
   height: 100%;
@@ -123,6 +128,8 @@ class MainContainer extends Component {
       artistLinkBandcamp: '',
       currentTrack: '',
       currentSetLength: 0,
+      //CONTROLS
+      songPlaying: true,
     }
   }
 
@@ -282,6 +289,18 @@ class MainContainer extends Component {
                     <br />
                     <a href={this.state.artistLinkBandcamp}>{this.state.artistLinkBandcamp ? "BandCamp" : ''}</a>
                   </div>
+                  <div class="controls">
+                    <button onClick={() => {
+                      if (this.state.songPlaying === false) {
+                        console.log('playing')
+                        this.state.audio.play();
+                        this.setState({ songPlaying: true })
+                      } else if (this.state.songPlaying) {
+                        this.state.audio.pause(),
+                          this.setState({ songPlaying: false })
+                      }
+                    }}>{this.state.songPlaying ? 'Pause' : 'Play'}</button>
+                  </div>
                 </ArtistContainer>
               </SectionPlayer>
               {/* <button
@@ -306,16 +325,16 @@ class MainContainer extends Component {
             </Container>
           }
           />
-          <Route exact path="/Profile" render={() =>
+          < Route exact path="/Profile" render={() =>
             <UserProfile
               userEmail={this.state.userEmail}
               userHandle={this.state.userHandle}
               userPhoto={this.state.userPhoto}
             />}
           />
-          <Footer />
-        </div>
-      </Router>
+          < Footer />
+        </div >
+      </Router >
     );
   }
 }
